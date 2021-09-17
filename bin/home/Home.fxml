@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.HomeController">
+   <children>
+      <TabPane layoutX="14.0" layoutY="14.0" prefHeight="450.0" prefWidth="690.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="HOME">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="403.0" prefWidth="665.0" AnchorPane.leftAnchor="14.0">
+                           <center>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="149.0" prefWidth="264.0" text="2조. 도서관리." textAlignment="CENTER" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                           </center>
+                           <left>
+                              <VBox prefHeight="403.0" prefWidth="166.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <TextField promptText="id">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </TextField>
+                                    <PasswordField promptText="password">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </PasswordField>
+                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="로그인">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="아이디찾기">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="비번재설정">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="회원가입">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </left>
+                           <right>
+                              <VBox prefHeight="403.0" prefWidth="255.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <TextField promptText="id">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField promptText="이름">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField promptText="01012341234">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </TextField>
+                                    <PasswordField promptText="password">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </PasswordField>
+                                    <PasswordField promptText="password confirm">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </PasswordField>
+                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="가입">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="찾기">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="재설정">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="취소">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </right>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="도서관리">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="698.0">
+                     <children>
+                        <BorderPane prefHeight="403.0" prefWidth="665.0">
+                           <right>
+                              <VBox prefHeight="403.0" prefWidth="320.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <HBox prefHeight="32.0" prefWidth="322.0">
+                                       <children>
+                                          <Label prefHeight="43.0" prefWidth="101.0" text="도서명 :">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField prefHeight="21.0" prefWidth="221.0">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="32.0" prefWidth="322.0">
+                                       <children>
+                                          <Label prefHeight="43.0" prefWidth="101.0" text="가격 :">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField prefHeight="21.0" prefWidth="221.0">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="32.0" prefWidth="322.0">
+                                       <children>
+                                          <Label prefHeight="43.0" prefWidth="101.0" text="작가명 :">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField prefHeight="21.0" prefWidth="221.0">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="45.0" prefWidth="665.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="등록">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="수정">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="삭제">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="취소">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                       <padding>
+                                          <Insets top="220.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </right>
+                           <center>
+                              <ListView prefHeight="403.0" prefWidth="404.0" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+          </Tab>
+            <Tab text="도서입출고">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="698.0">
+                     <children>
+                        <BorderPane prefHeight="403.0" prefWidth="665.0">
+                           <right>
+                              <VBox prefHeight="403.0" prefWidth="320.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <HBox prefHeight="32.0" prefWidth="322.0">
+                                       <children>
+                                          <Label prefHeight="43.0" prefWidth="101.0" text="도서명 :">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="32.0" prefWidth="220.0" text="도서명 Label">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="32.0" prefWidth="322.0">
+                                       <children>
+                                          <Label prefHeight="43.0" prefWidth="101.0" text="가격 :">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="32.0" prefWidth="218.0" text="가격 Label">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="32.0" prefWidth="322.0">
+                                       <children>
+                                          <Label prefHeight="43.0" prefWidth="101.0" text="작가명 :">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="32.0" prefWidth="219.0" text="작가명 Label">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="32.0" prefWidth="322.0">
+                                       <children>
+                                          <Label prefHeight="43.0" prefWidth="162.0" text="입/출고량 :">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField prefHeight="21.0" prefWidth="221.0">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <DatePicker prefHeight="41.0" prefWidth="320.0" promptText="입/출고일" />
+                                    <ComboBox prefHeight="38.0" prefWidth="321.0" promptText="거래처" />
+                                    <HBox prefHeight="45.0" prefWidth="665.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="입고">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="출고">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="취소">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                       <padding>
+                                          <Insets top="130.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </right>
+                           <left>
+                              <TableView prefHeight="403.0" prefWidth="328.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="도서명" />
+                                  <TableColumn prefWidth="75.0" text="재고" />
+                                </columns>
+                              </TableView>
+                           </left>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="거래처관리">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="698.0">
+                     <children>
+                        <BorderPane prefHeight="403.0" prefWidth="665.0">
+                           <right>
+                              <VBox prefHeight="403.0" prefWidth="320.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <HBox prefHeight="32.0" prefWidth="322.0">
+                                       <children>
+                                          <Label prefHeight="43.0" prefWidth="115.0" text="거래처명 :">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField prefHeight="44.0" prefWidth="205.0">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="32.0" prefWidth="322.0">
+                                       <children>
+                                          <Label prefHeight="43.0" prefWidth="130.0" text="담당자명 :">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField prefHeight="44.0" prefWidth="220.0">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="32.0" prefWidth="322.0">
+                                       <children>
+                                          <Label prefHeight="43.0" prefWidth="101.0" text="연락처 :">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField prefHeight="21.0" prefWidth="221.0">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="45.0" prefWidth="665.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="등록">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="수정">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="삭제">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="취소">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                       <padding>
+                                          <Insets top="220.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </right>
+                           <center>
+                              <ListView prefHeight="403.0" prefWidth="404.0" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="입출고현황">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="398.0" prefWidth="664.0">
+                           <top>
+                              <HBox prefHeight="69.0" prefWidth="664.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <VBox prefHeight="100.0" prefWidth="164.0">
+                                       <children>
+                                          <Label text="검색 시작일">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <DatePicker prefHeight="37.0" prefWidth="163.0" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="100.0" prefWidth="164.0">
+                                       <children>
+                                          <Label text="검색 종료일">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <DatePicker prefHeight="37.0" prefWidth="163.0" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="100.0" prefWidth="164.0">
+                                       <children>
+                                          <Label text="오늘 검색">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="164.0" text="오늘 검색">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="100.0" prefWidth="164.0">
+                                       <children>
+                                          <Label text="전체 검색">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="164.0" text="전체 검색">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </top>
+                           <center>
+                              <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="도서명" />
+                                  <TableColumn prefWidth="75.0" text="가격" />
+                                    <TableColumn prefWidth="75.0" text="거래처" />
+                                    <TableColumn prefWidth="75.0" text="작업자명" />
+                                    <TableColumn prefWidth="75.0" text="입고량" />
+                                    <TableColumn prefWidth="75.0" text="출고량" />
+                                    <TableColumn prefWidth="75.0" text="재고량" />
+                                    <TableColumn prefWidth="75.0" text="일자" />
+                                </columns>
+                              </TableView>
+                           </center>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+   <padding>
+      <Insets top="5.0" />
+   </padding>
+</AnchorPane>
