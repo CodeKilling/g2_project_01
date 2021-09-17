@@ -229,7 +229,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <Label prefHeight="32.0" prefWidth="220.0" text="도서명 Label">
+                                          <Label fx:id="bookName" prefHeight="32.0" prefWidth="220.0" text="도서명 Label">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
@@ -243,7 +243,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <Label prefHeight="32.0" prefWidth="218.0" text="가격 Label">
+                                          <Label fx:id="bookPrice" prefHeight="32.0" prefWidth="218.0" text="가격 Label">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
@@ -257,7 +257,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <Label prefHeight="32.0" prefWidth="219.0" text="작가명 Label">
+                                          <Label fx:id="writerName" prefHeight="32.0" prefWidth="219.0" text="작가명 Label">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
@@ -271,28 +271,28 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <TextField prefHeight="21.0" prefWidth="221.0">
+                                          <TextField fx:id="inputStock" prefHeight="21.0" prefWidth="221.0">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
                                           </TextField>
                                        </children>
                                     </HBox>
-                                    <DatePicker prefHeight="41.0" prefWidth="320.0" promptText="입/출고일" />
-                                    <ComboBox prefHeight="38.0" prefWidth="321.0" promptText="거래처" />
+                                    <DatePicker fx:id="eventDate" prefHeight="41.0" prefWidth="320.0" promptText="입/출고일" />
+                                    <ComboBox fx:id="cmbAccount" prefHeight="38.0" prefWidth="321.0" promptText="거래처" />
                                     <HBox prefHeight="45.0" prefWidth="665.0">
                                        <children>
-                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="입고">
+                                          <Button mnemonicParsing="false" onAction="#plusStock" prefHeight="44.0" prefWidth="168.0" text="입고">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
                                           </Button>
-                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="출고">
+                                          <Button mnemonicParsing="false" onAction="#minusStock" prefHeight="44.0" prefWidth="168.0" text="출고">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
                                           </Button>
-                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="취소">
+                                          <Button mnemonicParsing="false" onAction="#cancel" prefHeight="44.0" prefWidth="168.0" text="취소">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
@@ -306,10 +306,10 @@
                               </VBox>
                            </right>
                            <left>
-                              <TableView prefHeight="403.0" prefWidth="328.0" BorderPane.alignment="CENTER">
+                              <TableView fx:id="stockTable" prefHeight="403.0" prefWidth="328.0" BorderPane.alignment="CENTER">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="도서명" />
-                                  <TableColumn prefWidth="75.0" text="재고" />
+                                  <TableColumn fx:id="fxBookName" prefWidth="75.0" text="도서명" />
+                                  <TableColumn fx:id="fxStock" prefWidth="75.0" text="재고" />
                                 </columns>
                               </TableView>
                            </left>
