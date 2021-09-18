@@ -7,4 +7,5 @@ public interface inOutService {
 	public void plusStock();
 	public void minusStock();
 	public void cancel();
+	public void setComboBox();
 }

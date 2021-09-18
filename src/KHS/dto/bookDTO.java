@@ -7,7 +7,8 @@ public class bookDTO {
 	// String id; // 작업자 id 로그인 기능 구현 후 만들기
 	int warehousing; // 입고량
 	int release; // 출고량
-	
+	int stock; // 재고량
+	String date; // 변동일
 	
 	public String getBookName() {
 		return bookName;
@@ -51,6 +52,5 @@ public class bookDTO {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	int stock; // 재고량
-	String date; // 변동일
+
 }

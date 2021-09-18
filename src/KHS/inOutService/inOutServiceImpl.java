@@ -14,19 +14,24 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class inOutServiceImpl implements inOutService{
 	Parent root;
 	KHS.dbService.dbServiceImpl db;
-	TableView table;
+	private ObservableList<String> list;
+	
+	@Override
+	public void setComboBox() {
+		ComboBox cmbAccount = (ComboBox)root.lookup("#cmbAccount");
+		list = FXCollections.observableArrayList("문화사","시조사","게임사","네이버");
+		cmbAccount.setItems(list);
+	}
 	
 	@Override
 	public void setRoot(Parent root) {
 		this.root = root;
 		db = new KHS.dbService.dbServiceImpl();
-		//setTableView();
 	}
 
 	@Override
@@ -132,30 +137,5 @@ public class inOutServiceImpl implements inOutService{
 		//★★★ cmbAccount.setValue(); // combobox를 FXCollections.observableArrayList 로 초기화 하기
 	}
 	
-	/*
-	private ObservableList<ObservableList> data;
-	public void setTableView() {
-		DBCommon.setDBConnection();
-		String sql = "select bookName,stock from stockDB";
-		try {
-			PreparedStatement ps;
-			ResultSet rs;
-			ps = DBCommon.con.prepareStatement(sql);
-			rs = ps.executeQuery();
-			data = FXCollections.observableArrayList();
-			while(rs.next()) {
-				ObservableList<String> row = FXCollections.observableArrayList();
-				for(int i = 1; i <=rs.getMetaData().getColumnCount(); i++) {
-					row.add(rs.getString(i));
-				}
-				data.add(row);
-			}
-			table.setItems(data);
-		} catch(Exception e) {
-			e.printStackTrace();
-			System.out.println("테이블뷰 가져오기 실패");
-		}
-	}
-	*/
 	
 }

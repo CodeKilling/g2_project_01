@@ -308,8 +308,8 @@
                            <left>
                               <TableView fx:id="stockTable" prefHeight="403.0" prefWidth="328.0" BorderPane.alignment="CENTER">
                                 <columns>
-                                  <TableColumn fx:id="fxBookName" prefWidth="75.0" text="도서명" />
-                                  <TableColumn fx:id="fxStock" prefWidth="75.0" text="재고" />
+                                  <TableColumn fx:id="bookNameColumn" prefWidth="75.0" text="도서명" />
+                                  <TableColumn fx:id="stockColumn" prefWidth="75.0" text="재고" />
                                 </columns>
                               </TableView>
                            </left>
