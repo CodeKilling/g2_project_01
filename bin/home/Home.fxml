@@ -421,7 +421,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <DatePicker prefHeight="37.0" prefWidth="163.0" />
+                                          <DatePicker fx:id="startDate" prefHeight="37.0" prefWidth="163.0" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="100.0" prefWidth="164.0">
@@ -431,7 +431,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <DatePicker prefHeight="37.0" prefWidth="163.0" />
+                                          <DatePicker fx:id="endDate" prefHeight="37.0" prefWidth="163.0" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="100.0" prefWidth="164.0">
@@ -441,7 +441,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="164.0" text="오늘 검색">
+                                          <Button mnemonicParsing="false" onAction="#todaySearch" prefHeight="37.0" prefWidth="164.0" text="오늘 검색">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -455,7 +455,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="164.0" text="전체 검색">
+                                          <Button mnemonicParsing="false" onAction="#allSearch" prefHeight="37.0" prefWidth="164.0" text="전체 검색">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>

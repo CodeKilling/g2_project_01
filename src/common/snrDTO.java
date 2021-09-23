@@ -3,61 +3,54 @@ package common;
 import java.sql.Date;
 
 public class snrDTO {
-	private Number bookId;
-	private Number memberId;
-	private Number accountId;
-	private Number inComing;
-	private Number outGoing;
-	private Number total;
-	private Date date;
-	private Number id;
-	public Number getBookId() {
+	private int bookId;
+	private int memberId;
+	private int accountId;
+	private int inOut;
+	private String recordDate;
+	private int id;
+	private int resultTotal;
+	public int getBookId() {
 		return bookId;
 	}
-	public void setBookId(Number bookId) {
+	public void setBookId(int bookId) {
 		this.bookId = bookId;
 	}
-	public Number getMemberId() {
+	public int getMemberId() {
 		return memberId;
 	}
-	public void setMemberId(Number memberId) {
+	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
-	public Number getAccountId() {
+	public int getAccountId() {
 		return accountId;
 	}
-	public void setAccountId(Number accountId) {
+	public void setAccountId(int accountId) {
 		this.accountId = accountId;
 	}
-	public Number getInComing() {
-		return inComing;
+	public int getInOut() {
+		return inOut;
 	}
-	public void setInComing(Number inComing) {
-		this.inComing = inComing;
+	public void setInOut(int inOut) {
+		this.inOut = inOut;
 	}
-	public Number getOutGoing() {
-		return outGoing;
+	public String getRecordDate() {
+		return recordDate;
 	}
-	public void setOutGoing(Number outGoing) {
-		this.outGoing = outGoing;
+	public void setRecordDate(String recordDate) {
+		this.recordDate = recordDate;
 	}
-	public Number getTotal() {
-		return total;
-	}
-	public void setTotal(Number total) {
-		this.total = total;
-	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	public Number getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Number id) {
+	public void setId(int id) {
 		this.id = id;
+	}
+	public int getResultTotal() {
+		return resultTotal;
+	}
+	public void setResultTotal(int resultTotal) {
+		this.resultTotal = resultTotal;
 	}
 	
 }
