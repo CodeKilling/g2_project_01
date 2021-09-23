@@ -1,85 +1,67 @@
 package home;
 
 import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import KHS.dbcommon.DBCommon;
-import KHS.dto.bookDTO;
-import KHS.dto.stockDTO;
-import KHS.inOutService.inOutServiceImpl;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import KHS.bookDTO;
+import KHS.inOutService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class HomeController implements Initializable{
 
 	Parent root = null;
-	KHS.inOutService.inOutServiceImpl svc;
-	ArrayList<stockDTO> dto;
+	inOutService IOSvc;
+	ArrayList<bookDTO> dto;
 	@FXML TableColumn bookNameColumn, stockColumn;
 	
 	public void setRoot(Parent p) {
 		this.root = p;
-		svc.setRoot(p);
-		svc.setComboBox();
-		
+		IOSvc.setRoot(p);
+		setColumn();
+		IOSvc.getTable();
 	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		svc = new inOutServiceImpl();
-		dto = new ArrayList<stockDTO>();
-		setColumn();
+		IOSvc = new inOutService();
+		dto = new ArrayList<bookDTO>();
 	}
 	
 	public void plusStock() {
-		svc.plusStock();
+		
 	}
 	
 	public void minusStock() {
-		svc.minusStock();
+	
 	}
 	
 	public void cancel() {
-		svc.cancel();
+		IOSvc.cancel();
 	}
+	
 	
 	public void setColumn() {
-		bookNameColumn.setCellValueFactory(new PropertyValueFactory("bookName"));
-		stockColumn.setCellValueFactory(new PropertyValueFactory("stock"));
+		bookNameColumn.setCellValueFactory(new PropertyValueFactory("name"));
+		stockColumn.setCellValueFactory(new PropertyValueFactory("total"));
 	}
 	
-	public void viewTable(ArrayList<stockDTO> dto) {
-		ObservableList<stockDTO> viewTable = FXCollections.observableArrayList();
-		DBCommon.setDBConnection();
-		PreparedStatement ps;
-		ResultSet rs = null;
-		try {
-			System.out.println("db접속까진 괜춘");
-			String sql = "select bookName, stock from stockDB";
-			ps = DBCommon.con.prepareStatement(sql);
-			rs = ps.executeQuery();
-			System.out.println("쿼리작동까진 괜춘");
-			while(rs.next()) {
-				dto.add(new stockDTO(rs.getString(1), rs.getInt(2)));
-			}
-			for(int i = 0; i < dto.size(); i++) {
-				viewTable.add(dto.get(i));
-			}
-			TableView<stockDTO> tableView = (TableView)root.lookup("#stockTable");
-			tableView.setItems(viewTable);
-		} catch(Exception e) {
-			e.printStackTrace();	
-		}
-		
+	public void selectTable(MouseEvent event) {
+		Label bookName = (Label)root.lookup("#bookName");
+		Label bookPrice = (Label)root.lookup("#bookPrice");
+		Label writerName = (Label)root.lookup("#writerName");
+		TableView<bookDTO> stockTable = (TableView)root.lookup("#stockTable");
+		int sel = stockTable.getSelectionModel().getSelectedIndex();
+		bookDTO data = stockTable.getSelectionModel().getSelectedItem();
+		bookName.setText(data.getName());
+		bookPrice.setText(data.getPrice());
+		writerName.setText(data.getWriter());
 	}
 	
 	
