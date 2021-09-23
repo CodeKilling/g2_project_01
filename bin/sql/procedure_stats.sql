@@ -15,7 +15,7 @@ BEGIN
          , b.total 현재재고
          , a.recorddate 등록일
     from snr a, book b, member c, account d
-    where a.bookid = b.id and a.memberid = c.id and a.accountid = d.id
+    where b.id = a.bookid and c.id = a.memberid and d.id = a.accountid
       and a.recorddate between P_STARTDATE and P_ENDDATE;
   NULL;
 END PROCEDURE_STATS;
