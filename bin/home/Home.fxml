@@ -306,10 +306,10 @@
                               </VBox>
                            </right>
                            <left>
-                              <TableView prefHeight="403.0" prefWidth="328.0" BorderPane.alignment="CENTER">
+                              <TableView fx:id="fxTV_snr" prefHeight="403.0" prefWidth="328.0" BorderPane.alignment="CENTER">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="도서명" />
-                                  <TableColumn prefWidth="75.0" text="재고" />
+                                  <TableColumn fx:id="fxCellBookName" prefWidth="75.0" text="도서명" />
+                                  <TableColumn fx:id="fxCellBookTotal" prefWidth="75.0" text="재고" />
                                 </columns>
                               </TableView>
                            </left>
@@ -471,10 +471,10 @@
                                   <TableColumn prefWidth="75.0" text="도서명" />
                                   <TableColumn prefWidth="75.0" text="가격" />
                                     <TableColumn prefWidth="75.0" text="거래처" />
-                                    <TableColumn prefWidth="75.0" text="작업자명" />
-                                    <TableColumn prefWidth="75.0" text="입고량" />
-                                    <TableColumn prefWidth="75.0" text="출고량" />
-                                    <TableColumn prefWidth="75.0" text="재고량" />
+                                    <TableColumn prefWidth="75.0" text="입출고자명" />
+                                    <TableColumn prefWidth="75.0" text="입출고량" />
+                                    <TableColumn prefWidth="75.0" text="결과재고" />
+                                    <TableColumn prefWidth="75.0" text="현재재고" />
                                     <TableColumn prefWidth="75.0" text="일자" />
                                 </columns>
                               </TableView>
