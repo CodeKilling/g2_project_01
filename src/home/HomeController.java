@@ -20,6 +20,7 @@ public class HomeController implements Initializable{
 		this.root = p;
 		ss.setRoot(p, startDate, endDate);
 	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Common.MyConnection();
@@ -31,4 +32,5 @@ public class HomeController implements Initializable{
 	public void allSearch() {
 		ss.allSearch();
 	}
+
 }

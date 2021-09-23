@@ -1,7 +1,5 @@
 package common;
 
-import java.sql.Date;
-
 public class snrDTO {
 	private int bookId;
 	private int memberId;
@@ -40,6 +38,7 @@ public class snrDTO {
 	public void setRecordDate(String recordDate) {
 		this.recordDate = recordDate;
 	}
+
 	public int getId() {
 		return id;
 	}
@@ -52,5 +51,4 @@ public class snrDTO {
 	public void setResultTotal(int resultTotal) {
 		this.resultTotal = resultTotal;
 	}
-	
 }
