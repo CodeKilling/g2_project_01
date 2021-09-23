@@ -1,6 +1,5 @@
 package login;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -11,7 +10,6 @@ public class DBserviceImpl implements DBservice {
 
 	@Override
 	public MemberDTO LoginCheck(String userId) {
-		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 

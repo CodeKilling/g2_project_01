@@ -9,7 +9,6 @@ import javafx.scene.control.TextField;
 public class LoginServiceImpl implements LoginService {
 	Parent root = null;
 	DBservice db;
-	Common cm;
 
 	public LoginServiceImpl() {
 		db = new DBserviceImpl();
@@ -25,20 +24,18 @@ public class LoginServiceImpl implements LoginService {
 		TextField id = (TextField) root.lookup("#fxId");
 		PasswordField pwd = (PasswordField) root.lookup("#fxPwd");
 		MemberDTO dto = db.LoginCheck(id.getText());
+		String msg = null;
 		if (dto != null) {
 			if (dto.getPwd().equals(pwd.getText())) {
-				String msg ="로그인 성공";
-				cm.MyAlert(msg);
+				msg = "로그인 성공";
 			}
-			
 			else {
-				String msg = "비밀번호가 틀렸습니다";
-				cm.MyAlert(msg);
+				msg = "비밀번호가 틀렸습니다";
 			}
 		}else {
-			String msg = "존재하지 않는 아이디 입니다";
-			cm.MyAlert(msg);
+			msg = "존재하지 않는 아이디 입니다";
 		}
+		Common.MyAlert(msg);
 	}
 
 }
