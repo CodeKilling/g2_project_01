@@ -37,7 +37,7 @@ public class HomeController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		svc = new inOutServiceImpl();
 		dto = new ArrayList<stockDTO>();
-		setColumn();
+		//setColumn();
 	}
 	
 	public void plusStock() {
@@ -51,13 +51,13 @@ public class HomeController implements Initializable{
 	public void cancel() {
 		svc.cancel();
 	}
-	
+	/*
 	public void setColumn() {
 		bookNameColumn.setCellValueFactory(new PropertyValueFactory("bookName"));
 		stockColumn.setCellValueFactory(new PropertyValueFactory("stock"));
 	}
 	
-	public void viewTable(ArrayList<stockDTO> dto) {
+	public void viewTable(ArrayList<stockDTO> dto) { 
 		ObservableList<stockDTO> viewTable = FXCollections.observableArrayList();
 		DBCommon.setDBConnection();
 		PreparedStatement ps;
@@ -79,6 +79,7 @@ public class HomeController implements Initializable{
 		} catch(Exception e) {
 			e.printStackTrace();	
 		}
+		*/
 		
 	}
 	
