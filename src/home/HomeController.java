@@ -10,10 +10,11 @@ import login.LoginService;
 import login.LoginServiceImpl;
 
 
-public class HomeController implements Initializable{
-	LoginService ls;
 	
+public class HomeController implements Initializable {
+	LoginService ls;
 	Parent root = null;
+
 	public void setRoot(Parent p) {
 		this.root = p;
 		ls.setRoot(p);
@@ -22,9 +23,11 @@ public class HomeController implements Initializable{
 		ls.Login();
 	}
 	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Common.MyConnection();
 		ls = new LoginServiceImpl();
 	}
+
 }
