@@ -282,12 +282,7 @@
                                     <ComboBox fx:id="cmbAccount" prefHeight="38.0" prefWidth="321.0" promptText="거래처" />
                                     <HBox prefHeight="45.0" prefWidth="665.0">
                                        <children>
-                                          <Button mnemonicParsing="false" onAction="#plusStock" prefHeight="44.0" prefWidth="168.0" text="입고">
-                                             <font>
-                                                <Font size="24.0" />
-                                             </font>
-                                          </Button>
-                                          <Button mnemonicParsing="false" onAction="#minusStock" prefHeight="44.0" prefWidth="168.0" text="출고">
+                                          <Button mnemonicParsing="false" onAction="#inOut" prefHeight="44.0" prefWidth="168.0" text="입/출고">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>

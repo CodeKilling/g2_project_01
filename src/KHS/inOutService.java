@@ -1,7 +1,11 @@
 package KHS;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
+import common.BookDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
@@ -10,16 +14,15 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
 public class inOutService {
 	Parent root;
 	dbService db;
-	ArrayList<bookDTO> dto;
+	ArrayList<BookDTO> dto;
 	
 	public inOutService() {
 		db = new dbService();
-		dto = new ArrayList<bookDTO>();
+		dto = new ArrayList<BookDTO>();
 	}
 	
 	public void setRoot(Parent root) {
@@ -31,12 +34,12 @@ public class inOutService {
 		viewStockTable(dto); // 해당 정보를 테이블뷰에 셋팅함
 	}
 	
-	public void viewStockTable(ArrayList<bookDTO> dto) {
-		ObservableList<bookDTO> view = FXCollections.observableArrayList();
+	public void viewStockTable(ArrayList<BookDTO> dto) {
+		ObservableList<BookDTO> view = FXCollections.observableArrayList();
 		for(int i = 0; i < dto.size(); i++) {
 			view.add(dto.get(i));
 		}
-		TableView<bookDTO> stockTable = (TableView)root.lookup("#stockTable");
+		TableView<BookDTO> stockTable = (TableView)root.lookup("#stockTable");
 		stockTable.setItems(view);
 	}
 	
@@ -52,8 +55,12 @@ public class inOutService {
 		
 		bookName.setText(""); bookPrice.setText(""); writerName.setText("");
 		inputStock.setText("");
-		eventDate.setValue(null); // DatePicker 에 아무값도 입력되지 않은 상태
 		
-		//★★★ cmbAccount.setValue(); // combobox를 FXCollections.observableArrayList 로 초기화 하기
+		LocalDate date = LocalDate.now();
+		eventDate.setValue(date); // DatePicker 오늘 날짜값을 넣음
+		
+		//cmbAccount.setValue(null); // combobox를 FXCollections.observableArrayList 로 초기화 하기
 	}
+	
+	
 }
