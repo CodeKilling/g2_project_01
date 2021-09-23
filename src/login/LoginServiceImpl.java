@@ -3,8 +3,6 @@ package login;
 import common.Common;
 import common.MemberDTO;
 import javafx.scene.Parent;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 
 public class LoginServiceImpl implements LoginService {
 	Parent root = null;
@@ -15,18 +13,11 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public void setRoot(Parent root) {
-		this.root = root;
-	}
-
-	@Override
-	public void Login() {
-		TextField id = (TextField) root.lookup("#fxId");
-		PasswordField pwd = (PasswordField) root.lookup("#fxPwd");
-		MemberDTO dto = db.LoginCheck(id.getText());
+	public void Login(String _id, String _pwd) {
+		MemberDTO dto = db.LoginCheck(_id);
 		String msg = null;
 		if (dto != null) {
-			if (dto.getPwd().equals(pwd.getText())) {
+			if (dto.getPwd().equals(_pwd)) {
 				msg = "로그인 성공";
 			}
 			else {
