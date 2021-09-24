@@ -43,7 +43,7 @@ public class inOutService {
 		for(int i = 0; i < dto.size(); i++) {
 			view.add(dto.get(i));
 		}
-		TableView<BookDTO> stockTable = (TableView)root.lookup("#stockTable");
+		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
 		stockTable.setItems(view);
 	}
 	
@@ -160,7 +160,7 @@ public class inOutService {
 	
 	public String getBookName() {
 		String name;
-		TableView<BookDTO> stockTable = (TableView)root.lookup("#stockTable");
+		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
 		BookDTO data = stockTable.getSelectionModel().getSelectedItem();
 		name = data.getName().toString();
 		System.out.println("책이름 : " + name);
@@ -180,7 +180,7 @@ public class inOutService {
 	}
 	
 	public int findStock() {	
-		TableView<BookDTO> stockTable = (TableView)root.lookup("#stockTable");
+		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
 		int bookStock = 0;
 		try {
 			BookDTO data = stockTable.getSelectionModel().getSelectedItem();

@@ -25,15 +25,14 @@ import stats.StatsService;
 import stats.StatsServiceImpl;
 
 public class HomeController implements Initializable{
-	dbService db = new dbService();
-	Parent root = null;
+	Parent root;
 	inOutService IOSvc;
 	ArrayList<BookDTO> dto;
 	LoginService ls;
 	StatsService ss = null;
 	
 	@FXML DatePicker startDate, endDate;
-	@FXML TableColumn bookName, price, accountName, memberName, inOut, resultTotal, total, recordDate, bookNameColumn, stockColumn;
+	@FXML TableColumn bookName, price, accountName, memberName, inOut, resultTotal, total, recordDate, fxCellBookName, fxCellBookTotal;
 	
 	
 	public void setRoot(Parent p) {
@@ -70,15 +69,15 @@ public class HomeController implements Initializable{
 	}
 
 	public void setColumn() {
-		bookNameColumn.setCellValueFactory(new PropertyValueFactory("name"));
-		stockColumn.setCellValueFactory(new PropertyValueFactory("total"));
+		fxCellBookName.setCellValueFactory(new PropertyValueFactory("name"));
+		fxCellBookTotal.setCellValueFactory(new PropertyValueFactory("total"));
 	}
 
 	public void selectTable(MouseEvent event) {
 		Label bookName = (Label)root.lookup("#bookName");
 		Label bookPrice = (Label)root.lookup("#bookPrice");
 		Label writerName = (Label)root.lookup("#writerName");
-		TableView<BookDTO> stockTable = (TableView)root.lookup("#stockTable");
+		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
 		//int sel = stockTable.getSelectionModel().getSelectedIndex();
 		BookDTO data = stockTable.getSelectionModel().getSelectedItem();
 		bookName.setText(data.getName());
