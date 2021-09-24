@@ -1,62 +1,72 @@
 package common;
 
+
 import java.sql.Date;
 
 public class snrDTO {
-	private Number bookId;
-	private Number memberId;
-	private Number accountId;
-	private Number inComing;
-	private Number outGoing;
-	private Number total;
-	private Date date;
-	private Number id;
-	public Number getBookId() {
-		return bookId;
+	private String bookName; //도서명
+	private String price; //가격
+	private String accountName; //거래처
+	private String memberName; //입출고자명
+	private int inOut; //입출고량
+	private int resultTotal; //결과재고
+	private int total; //현재재고
+	private String recordDate; //일자
+	private int id;
+	public String getBookName() {
+		return bookName;
 	}
-	public void setBookId(Number bookId) {
-		this.bookId = bookId;
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
-	public Number getMemberId() {
-		return memberId;
+	public String getPrice() {
+		return price;
 	}
-	public void setMemberId(Number memberId) {
-		this.memberId = memberId;
+	public void setPrice(String price) {
+		this.price = price;
 	}
-	public Number getAccountId() {
-		return accountId;
+	public String getAccountName() {
+		return accountName;
 	}
-	public void setAccountId(Number accountId) {
-		this.accountId = accountId;
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}
-	public Number getInComing() {
-		return inComing;
+	public String getMemberName() {
+		return memberName;
 	}
-	public void setInComing(Number inComing) {
-		this.inComing = inComing;
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
-	public Number getOutGoing() {
-		return outGoing;
+	public int getInOut() {
+		return inOut;
 	}
-	public void setOutGoing(Number outGoing) {
-		this.outGoing = outGoing;
+	public void setInOut(int inOut) {
+		this.inOut = inOut;
 	}
-	public Number getTotal() {
+	public int getResultTotal() {
+		return resultTotal;
+	}
+	public void setResultTotal(int resultTotal) {
+		this.resultTotal = resultTotal;
+	}
+	public int getTotal() {
 		return total;
 	}
-	public void setTotal(Number total) {
+	public void setTotal(int total) {
 		this.total = total;
 	}
-	public Date getDate() {
-		return date;
+	public String getRecordDate() {
+		return recordDate;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setRecordDate(String recordDate) {
+		this.recordDate = recordDate;
 	}
-	public Number getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Number id) {
+	public void setId(int id) {
 		this.id = id;
 	}
+	
+
 }

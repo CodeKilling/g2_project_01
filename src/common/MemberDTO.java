@@ -29,4 +29,5 @@ public class MemberDTO {
 	public void setId(Number id) {
 		this.id = id;
 	}
+
 }
