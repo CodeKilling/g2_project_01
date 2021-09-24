@@ -4,15 +4,21 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import account.AccountService;
+import account.AccountServiceImpl;
 import KHS.inOutService;
 import common.BookDTO;
 import common.Common;
 import javafx.fxml.FXML;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -25,24 +31,57 @@ import stats.StatsServiceImpl;
 
 
 public class HomeController implements Initializable{
-	Parent root;
+	@FXML DatePicker startDate, endDate;
+	@FXML TableColumn bookName, price, accountName, memberName, inOut, resultTotal, total, recordDate;
+	@FXML TableColumn fxaccountName, fxaccountWorkerName, fxaccountContactNumber;
+	@FXML TableColumn fxCellBookName, fxCellBookTotal;
+	TabPane tabpane = null;
+	
 	inOutService IOSvc;
 	ArrayList<BookDTO> dto;
 	LoginService ls;
 	StatsService ss = null;
+	AccountService as = null;
 	
-	@FXML DatePicker startDate, endDate;
-	@FXML TableColumn bookName, price, accountName, memberName, inOut, resultTotal, total, recordDate, fxCellBookName, fxCellBookTotal;
-	
-	
+	Parent root = null;
 	public void setRoot(Parent p) {
 		this.root = p;
 		IOSvc.setRoot(p);
-		setColumn();
-		IOSvc.getTable();
-		IOSvc.setAccCmb();
 		ss.setRoot(p, startDate, endDate);
-		StatsSetColumn();
+		as.setRoot(p);
+		
+		tabpane = (TabPane)root.lookup("#fxTabPane");
+		tabpane.getSelectionModel().selectedItemProperty().addListener(
+			    new ChangeListener<Tab>() {
+			        @Override
+			        public void changed(ObservableValue<? extends Tab> ov, Tab t, Tab t1) {
+			            switch(t1.getText()) {
+			            case "HOME":
+			            	System.out.println("Tab Selection changed : " + t1.getText());
+			            	break;
+			            case "도서관리":
+			            	System.out.println("Tab Selection changed : " + t1.getText());
+			            	break;
+			            case "도서입출고":
+			            	System.out.println("Tab Selection changed : " + t1.getText());
+			            	setColumn();
+			            	//inOut();
+			            	IOSvc.getTable();
+			        		IOSvc.setAccCmb();
+			            	break;
+			            case "거래처관리":
+			            	System.out.println("Tab Selection changed : " + t1.getText());
+			            	AccountSetColumn();
+			            	as.setView();
+			            	break;
+			            case "입출고현황":
+			            	System.out.println("Tab Selection changed : " + t1.getText());
+			            	StatsSetColumn();
+			            	break;
+			            }
+			        }
+			    }
+			);
 	}
 	
 	public void login() {
@@ -50,18 +89,19 @@ public class HomeController implements Initializable{
 		PasswordField pwd = (PasswordField) root.lookup("#fxPwd");
 		ls.Login(id.getText(), pwd.getText());
 	}
-
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		Common.MyConnection();
 		IOSvc = new inOutService();
 		dto = new ArrayList<BookDTO>();
-		Common.MyConnection();
 		ls = new LoginServiceImpl();
 		ss = new StatsServiceImpl();
+		as = new AccountServiceImpl();
 	}
 	
 	public void inOut() {
-		IOSvc.inOutService();
+		IOSvc.iOService();
 	}
 	
 	public void cancel() {
@@ -94,6 +134,12 @@ public class HomeController implements Initializable{
 		resultTotal.setCellValueFactory(new PropertyValueFactory("resultTotal"));
 		total.setCellValueFactory(new PropertyValueFactory("total"));
 		recordDate.setCellValueFactory(new PropertyValueFactory("recordDate"));
+	}
+	
+	private void AccountSetColumn() {
+		fxaccountName.setCellValueFactory(new PropertyValueFactory("name"));
+		fxaccountWorkerName.setCellValueFactory(new PropertyValueFactory("workerName"));
+		fxaccountContactNumber.setCellValueFactory(new PropertyValueFactory("contactNumber"));
 	}
 	
 	public void todaySearch() {

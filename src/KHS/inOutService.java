@@ -87,7 +87,7 @@ public class inOutService {
 			// 4번째 = 입출고량 >> #inputStock textfield 값을 가져옴
 			// 5번째 = datepicker에서 선택한 날짜.toString()
 
-	public void inOutService() {
+	public void iOService() {
 		TextField inputStock = (TextField)root.lookup("#inputStock");	
 		int stock;
 		if(Objects.equals(inputStock.getText(),null) || Objects.equals(inputStock.getText(),"")) {
@@ -122,7 +122,11 @@ public class inOutService {
 		      try {
 		         CallableStatement cs = Common.con.prepareCall(sql);
 		         cs.setInt(1, bookId);
-		         cs.setInt(2, 1); // 로그인한 멤버 id(시퀀스 값) from MemberDTO ?
+		         if(Common.sessionID < 0) {
+		        	 Common.MyAlert("로그인 하고 테스트 하세요.");
+		        	 // 이 조건문 차후 필요없어짐. 차후 삭제 할것.
+		         }
+		         cs.setInt(2, Common.sessionID); // 로그인한 멤버 id(시퀀스 값) from MemberDTO ?
 		         cs.setInt(3, AccId); // 거래처의 id 값
 		         cs.setInt(4, stock); // #inputStock
 		         cs.setString(5, FommatDate); // #eventDate
@@ -133,7 +137,7 @@ public class inOutService {
 		            System.out.println(rs.getString("name"));
 		            System.out.println(rs.getInt("total"));
 		         }
-		         getTable(); // 갱신된 정보로 테이블을 셋팅함
+		         //getTable(); // 갱신된 정보로 테이블을 셋팅함
 		      } catch (SQLException e) {
 		         e.printStackTrace();
 		      }

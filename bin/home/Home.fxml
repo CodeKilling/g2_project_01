@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -20,7 +19,7 @@
 
 <AnchorPane prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.HomeController">
    <children>
-      <TabPane layoutX="14.0" layoutY="14.0" prefHeight="450.0" prefWidth="690.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="fxTabPane" layoutX="14.0" layoutY="14.0" prefHeight="450.0" prefWidth="690.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="HOME">
             <content>
@@ -206,9 +205,15 @@
                                  </children>
                               </VBox>
                            </right>
-                           <center>
-                              <ListView prefHeight="403.0" prefWidth="404.0" BorderPane.alignment="CENTER" />
-                           </center>
+                           <left>
+                              <TableView prefHeight="403.0" prefWidth="331.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="도서명" />
+                                  <TableColumn prefWidth="75.0" text="작가명" />
+                                    <TableColumn prefWidth="75.0" text="가격" />
+                                </columns>
+                              </TableView>
+                           </left>
                         </BorderPane>
                      </children>
                   </AnchorPane>
@@ -393,9 +398,15 @@
                                  </children>
                               </VBox>
                            </right>
-                           <center>
-                              <ListView prefHeight="403.0" prefWidth="404.0" BorderPane.alignment="CENTER" />
-                           </center>
+                           <left>
+                              <TableView fx:id="fxTableView_Account" prefHeight="403.0" prefWidth="331.0" BorderPane.alignment="CENTER">
+                                 <columns>
+                                    <TableColumn fx:id="fxaccountName" prefWidth="75.0" text="거래처명" />
+                                    <TableColumn fx:id="fxaccountWorkerName" prefWidth="75.0" text="담당자명" />
+                                    <TableColumn fx:id="fxaccountContactNumber" prefWidth="75.0" text="연락처" />
+                                 </columns>
+                              </TableView>
+                           </left>
                         </BorderPane>
                      </children>
                   </AnchorPane>

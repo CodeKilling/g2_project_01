@@ -12,13 +12,12 @@ import javafx.scene.control.TextField;
 
 public class dbService {
 	String sql;
-	Connection con;
 	PreparedStatement ps;
 	ResultSet rs;
 	inOutService IOSvc;
 	
 	public dbService() {
-		Common.MyConnection();
+		//Common.MyConnection();
 	}
 	
 	public ArrayList<BookDTO> getDB(){	// BOOK db에 있는 값 가져오기	

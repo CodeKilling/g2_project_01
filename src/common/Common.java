@@ -9,6 +9,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class Common {
+	public static int sessionID = -1;
 	public static void MyClose(Parent p) {
 		Stage s = (Stage) p.getScene().getWindow();
 		s.close();
