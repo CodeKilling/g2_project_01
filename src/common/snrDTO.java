@@ -1,5 +1,8 @@
 package common;
 
+
+import java.sql.Date;
+
 public class snrDTO {
 	private String bookName; //도서명
 	private String price; //가격
@@ -65,4 +68,5 @@ public class snrDTO {
 		this.id = id;
 	}
 	
+
 }

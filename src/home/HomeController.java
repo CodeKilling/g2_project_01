@@ -1,27 +1,34 @@
 package home;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import account.AccountService;
 import account.AccountServiceImpl;
-import common.Common;
+import KHS.dbService;
+import KHS.inOutService;
+import common.BookDTO;
 import javafx.fxml.FXML;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.PropertyValueFactory;
-import stats.StatsService;
-import stats.StatsServiceImpl;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import login.DBservice;
 import login.LoginService;
 import login.LoginServiceImpl;
+import stats.StatsService;
+import stats.StatsServiceImpl;
 
 	
 public class HomeController implements Initializable {
@@ -35,8 +42,16 @@ public class HomeController implements Initializable {
 	AccountService as = null;	
 	
 	Parent root = null;
+	DBservice db = new dbService();
+	inOutService IOSvc;
+	ArrayList<BookDTO> dto;
+	
 	public void setRoot(Parent p) {
 		this.root = p;
+		IOSvc.setRoot(p);
+		setColumn();
+		IOSvc.getTable();
+		IOSvc.setAccCmb();
 		ss.setRoot(p, startDate, endDate);
 		as.setRoot(p);
 		
@@ -79,9 +94,36 @@ public class HomeController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Common.MyConnection();
+		IOSvc = new inOutService();
+		dto = new ArrayList<BookDTO>();
 		ls = new LoginServiceImpl();
 		ss = new StatsServiceImpl();
 		as = new AccountServiceImpl();
+	}
+	
+	public void inOut() {
+		IOSvc.inOutService();
+	}
+	
+	public void cancel() {
+		IOSvc.cancel();
+	}
+
+	public void setColumn() {
+		bookNameColumn.setCellValueFactory(new PropertyValueFactory("name"));
+		stockColumn.setCellValueFactory(new PropertyValueFactory("total"));
+	}
+
+	public void selectTable(MouseEvent event) {
+		Label bookName = (Label)root.lookup("#bookName");
+		Label bookPrice = (Label)root.lookup("#bookPrice");
+		Label writerName = (Label)root.lookup("#writerName");
+		TableView<BookDTO> stockTable = (TableView)root.lookup("#stockTable");
+		//int sel = stockTable.getSelectionModel().getSelectedIndex();
+		BookDTO data = stockTable.getSelectionModel().getSelectedItem();
+		bookName.setText(data.getName());
+		bookPrice.setText(data.getPrice());
+		writerName.setText(data.getWriter());
 	}
 	
 	public void StatsSetColumn() {
