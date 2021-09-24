@@ -2,10 +2,8 @@ package login;
 
 import common.Common;
 import common.MemberDTO;
-import javafx.scene.Parent;
 
 public class LoginServiceImpl implements LoginService {
-	Parent root = null;
 	DBservice db;
 
 	public LoginServiceImpl() {
