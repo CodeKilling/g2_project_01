@@ -4,7 +4,7 @@ public class AccountDTO {
 	private String name;
 	private String contactNumber;
 	private String workerName;
-	private Number id;
+	private int id;
 	public String getName() {
 		return name;
 	}
@@ -23,10 +23,10 @@ public class AccountDTO {
 	public void setWorkerName(String workerName) {
 		this.workerName = workerName;
 	}
-	public Number getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Number id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
