@@ -404,7 +404,7 @@
                               </VBox>
                            </right>
                            <left>
-                              <TableView prefHeight="403.0" prefWidth="331.0" BorderPane.alignment="CENTER">
+                              <TableView fx:id="fxTableView_Account" prefHeight="403.0" prefWidth="331.0" BorderPane.alignment="CENTER">
                                  <columns>
                                     <TableColumn fx:id="accountName" prefWidth="75.0" text="거래처명" />
                                     <TableColumn fx:id="accountWorkerName" prefWidth="75.0" text="담당자명" />

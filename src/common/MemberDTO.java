@@ -4,7 +4,7 @@ public class MemberDTO {
 	private String userId;
 	private String name;
 	private String pwd;
-	private Number id;
+	private int id;
 	public String getUserId() {
 		return userId;
 	}
@@ -23,10 +23,10 @@ public class MemberDTO {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	public Number getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Number id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	

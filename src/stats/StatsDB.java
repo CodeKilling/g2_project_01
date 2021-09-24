@@ -17,7 +17,7 @@ public class StatsDB {
 	private String sql = null;
 	public ArrayList<snrDTO> search(String sd, String ed) {
 		ArrayList<snrDTO> list = new ArrayList<snrDTO>();
-		String sql = "begin procedure_stats(?,?,?); end;";
+		sql = "begin procedure_stats(?,?,?); end;";
 	      try {
 	         CallableStatement cs = Common.con.prepareCall(sql);
 	         cs.setString(1, sd); //검색시작일
