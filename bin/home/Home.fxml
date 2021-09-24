@@ -301,7 +301,7 @@
                               </VBox>
                            </right>
                            <left>
-                              <TableView fx:id="fxTV_snr" prefHeight="403.0" prefWidth="328.0" BorderPane.alignment="CENTER">
+                              <TableView fx:id="fxTV_snr" onMouseClicked="#selectTable" prefHeight="403.0" prefWidth="328.0" BorderPane.alignment="CENTER">
                                 <columns>
                                   <TableColumn fx:id="fxCellBookName" prefWidth="75.0" text="도서명" />
                                   <TableColumn fx:id="fxCellBookTotal" prefWidth="75.0" text="재고" />
