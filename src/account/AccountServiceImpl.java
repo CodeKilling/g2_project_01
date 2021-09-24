@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -82,6 +83,7 @@ public class AccountServiceImpl implements AccountService {
 		if (arr.size() > 0) {
 			Common.MyAlert("등록 성공!");
 			this.setList(arr);
+			tv.getSelectionModel().select(arr.size()-1);
 		} else {
 			Common.MyAlert("등록 실패! (ex : 거래처명이 이미 존재 합니다.)");
 		}
@@ -103,6 +105,7 @@ public class AccountServiceImpl implements AccountService {
 			if (arr.size() > 0) {
 				Common.MyAlert("수정 성공!");
 				this.setList(arr);
+				tv.getSelectionModel().select(selectionID);
 			} else {
 				Common.MyAlert("수정 실패! (ex : .)");
 			}
@@ -136,6 +139,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public void clear() {
+		//tv.getSelectionModel().select(-1);
+		tv.getSelectionModel().clearSelection();
+		selectionID = -1;
 		tF_AccountName.clear();
 		tF_WorkerName.clear();
 		tF_ContactNumber.clear();

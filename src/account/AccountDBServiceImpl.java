@@ -96,7 +96,7 @@ public class AccountDBServiceImpl implements AccountDBService {
 	public ArrayList<AccountDTO> viewAccount() {
 		ArrayList<AccountDTO> arr = new ArrayList<AccountDTO>();
 		AccountDTO dto = null;
-		sql = "select *" + "from account";
+		sql = "select * from account order by account.id";
 		try {
 			ps = Common.con.prepareStatement(sql);
 			rs = ps.executeQuery();
