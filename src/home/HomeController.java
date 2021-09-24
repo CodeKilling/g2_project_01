@@ -12,11 +12,17 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import stats.StatsService;
 import stats.StatsServiceImpl;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import login.LoginService;
+import login.LoginServiceImpl;
 
 
-public class HomeController implements Initializable{
+	
+public class HomeController implements Initializable {
 	@FXML DatePicker startDate, endDate;
 	@FXML TableColumn bookName, price, accountName, memberName, inOut, resultTotal, total, recordDate;
+	LoginService ls;
 	Parent root = null;
 	StatsService ss = null;
 	public void setRoot(Parent p) {
@@ -24,10 +30,16 @@ public class HomeController implements Initializable{
 		ss.setRoot(p, startDate, endDate);
 		StatsSetColumn();
 	}
+	public void login() {
+		TextField id = (TextField) root.lookup("#fxId");
+		PasswordField pwd = (PasswordField) root.lookup("#fxPwd");
+		ls.Login(id.getText(), pwd.getText());
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Common.MyConnection();
+		ls = new LoginServiceImpl();
 		ss = new StatsServiceImpl();
 	}
 	public void StatsSetColumn() {

@@ -37,17 +37,17 @@
                            <left>
                               <VBox prefHeight="403.0" prefWidth="166.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <TextField promptText="id">
+                                    <TextField fx:id="fxId" promptText="id">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </TextField>
-                                    <PasswordField promptText="password">
+                                    <PasswordField fx:id="fxPwd" promptText="password">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </PasswordField>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="로그인">
+                                    <Button mnemonicParsing="false" onAction="#login" prefHeight="44.0" prefWidth="168.0" text="로그인">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
