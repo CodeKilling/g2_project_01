@@ -17,6 +17,7 @@ public class LoginServiceImpl implements LoginService {
 		if (dto != null) {
 			if (dto.getPwd().equals(_pwd)) {
 				msg = "로그인 성공";
+				Common.sessionID = dto.getId();
 			}
 			else {
 				msg = "비밀번호가 틀렸습니다";

@@ -27,6 +27,7 @@ import login.LoginServiceImpl;
 public class HomeController implements Initializable {
 	@FXML DatePicker startDate, endDate;
 	@FXML TableColumn bookName, price, accountName, memberName, inOut, resultTotal, total, recordDate;
+	@FXML TableColumn fxaccountName, fxaccountWorkerName, fxaccountContactNumber;
 	TabPane tabpane = null;
 
 	LoginService ls = null;
@@ -56,6 +57,7 @@ public class HomeController implements Initializable {
 			            	break;
 			            case "거래처관리":
 			            	System.out.println("Tab Selection changed : " + t1.getText());
+			            	AccountSetColumn();
 			            	as.setView();
 			            	break;
 			            case "입출고현황":
@@ -91,6 +93,12 @@ public class HomeController implements Initializable {
 		resultTotal.setCellValueFactory(new PropertyValueFactory("resultTotal"));
 		total.setCellValueFactory(new PropertyValueFactory("total"));
 		recordDate.setCellValueFactory(new PropertyValueFactory("recordDate"));
+	}
+	
+	private void AccountSetColumn() {
+		fxaccountName.setCellValueFactory(new PropertyValueFactory("name"));
+		fxaccountWorkerName.setCellValueFactory(new PropertyValueFactory("workerName"));
+		fxaccountContactNumber.setCellValueFactory(new PropertyValueFactory("contactNumber"));
 	}
 	
 	public void todaySearch() {

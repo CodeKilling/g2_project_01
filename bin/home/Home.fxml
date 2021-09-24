@@ -406,9 +406,9 @@
                            <left>
                               <TableView fx:id="fxTableView_Account" prefHeight="403.0" prefWidth="331.0" BorderPane.alignment="CENTER">
                                  <columns>
-                                    <TableColumn fx:id="accountName" prefWidth="75.0" text="거래처명" />
-                                    <TableColumn fx:id="accountWorkerName" prefWidth="75.0" text="담당자명" />
-                                    <TableColumn fx:id="accountContactNumber" prefWidth="75.0" text="연락처" />
+                                    <TableColumn fx:id="fxaccountName" prefWidth="75.0" text="거래처명" />
+                                    <TableColumn fx:id="fxaccountWorkerName" prefWidth="75.0" text="담당자명" />
+                                    <TableColumn fx:id="fxaccountContactNumber" prefWidth="75.0" text="연락처" />
                                  </columns>
                               </TableView>
                            </left>
