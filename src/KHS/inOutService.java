@@ -43,13 +43,13 @@ public class inOutService {
 		for(int i = 0; i < dto.size(); i++) {
 			view.add(dto.get(i));
 		}
-		TableView<BookDTO> stockTable = (TableView)root.lookup("#stockTable");
+		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
 		stockTable.setItems(view);
 	}
 	
 	public void cancel() {
 		System.out.println("입력값 초기화");
-		Label bookName = (Label)root.lookup("#bookName");
+		Label bookName = (Label)root.lookup("#lbbookName");
 		Label bookPrice = (Label)root.lookup("#bookPrice");
 		Label writerName = (Label)root.lookup("#writerName");
 		
@@ -87,9 +87,14 @@ public class inOutService {
 			// 4번째 = 입출고량 >> #inputStock textfield 값을 가져옴
 			// 5번째 = datepicker에서 선택한 날짜.toString()
 
-	public void inOutService() {
-		TextField inputStock = (TextField)root.lookup("#inputStock");
-		int stock = Integer.parseInt(inputStock.getText());
+	public void iOService() {
+		TextField inputStock = (TextField)root.lookup("#inputStock");	
+		int stock;
+		if(Objects.equals(inputStock.getText(),null) || Objects.equals(inputStock.getText(),"")) {
+			stock = 0;
+		}else {
+			stock = Integer.parseInt(inputStock.getText());
+		}
 		
 		DatePicker eventDate = (DatePicker)root.lookup("#eventDate");
 		String FommatDate;
@@ -111,13 +116,17 @@ public class inOutService {
 			// 출고의 경우 stock의 값이 음수(-)로 들어옴으로 실제량+입력량의 합으로 계산
 			Common.MyAlert("실제 재고량보다 많은 출고량을 입력했습니다.");
 		}else if(inputStock.getText().equals(null) || Objects.equals(eventDate.getValue(),null)
-				|| cmbAccount.getValue().toString().equals(null)){ // 입출고량, 날짜, 거래처 칸중 하나라도 입력하지 않은 경우
+				|| Objects.equals(cmbAccount.getValue(),null)){ // 입출고량, 날짜, 거래처 칸중 하나라도 입력하지 않은 경우
 			Common.MyAlert("입력하지 않은 칸이 있습니다.");
 		}else {
 		      try {
 		         CallableStatement cs = Common.con.prepareCall(sql);
 		         cs.setInt(1, bookId);
-		         cs.setInt(2, 1); // 로그인한 멤버 id(시퀀스 값) from MemberDTO ?
+		         if(Common.sessionID < 0) {
+		        	 Common.MyAlert("로그인 하고 테스트 하세요.");
+		        	 // 이 조건문 차후 필요없어짐. 차후 삭제 할것.
+		         }
+		         cs.setInt(2, Common.sessionID); // 로그인한 멤버 id(시퀀스 값) from MemberDTO ?
 		         cs.setInt(3, AccId); // 거래처의 id 값
 		         cs.setInt(4, stock); // #inputStock
 		         cs.setString(5, FommatDate); // #eventDate
@@ -128,7 +137,7 @@ public class inOutService {
 		            System.out.println(rs.getString("name"));
 		            System.out.println(rs.getInt("total"));
 		         }
-		         getTable(); // 갱신된 정보로 테이블을 셋팅함
+		         //getTable(); // 갱신된 정보로 테이블을 셋팅함
 		      } catch (SQLException e) {
 		         e.printStackTrace();
 		      }
@@ -160,7 +169,7 @@ public class inOutService {
 	
 	public String getBookName() {
 		String name;
-		TableView<BookDTO> stockTable = (TableView)root.lookup("#stockTable");
+		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
 		BookDTO data = stockTable.getSelectionModel().getSelectedItem();
 		name = data.getName().toString();
 		System.out.println("책이름 : " + name);
@@ -180,7 +189,7 @@ public class inOutService {
 	}
 	
 	public int findStock() {	
-		TableView<BookDTO> stockTable = (TableView)root.lookup("#stockTable");
+		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
 		int bookStock = 0;
 		try {
 			BookDTO data = stockTable.getSelectionModel().getSelectedItem();

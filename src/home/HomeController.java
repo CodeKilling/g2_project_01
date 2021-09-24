@@ -6,9 +6,9 @@ import java.util.ResourceBundle;
 
 import account.AccountService;
 import account.AccountServiceImpl;
-import KHS.dbService;
 import KHS.inOutService;
 import common.BookDTO;
+import common.Common;
 import javafx.fxml.FXML;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -24,34 +24,29 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import login.DBservice;
 import login.LoginService;
 import login.LoginServiceImpl;
 import stats.StatsService;
 import stats.StatsServiceImpl;
 
-	
-public class HomeController implements Initializable {
+
+public class HomeController implements Initializable{
 	@FXML DatePicker startDate, endDate;
 	@FXML TableColumn bookName, price, accountName, memberName, inOut, resultTotal, total, recordDate;
 	@FXML TableColumn fxaccountName, fxaccountWorkerName, fxaccountContactNumber;
+	@FXML TableColumn fxCellBookName, fxCellBookTotal;
 	TabPane tabpane = null;
-
-	LoginService ls = null;
-	StatsService ss = null;
-	AccountService as = null;	
 	
-	Parent root = null;
-	DBservice db = new dbService();
 	inOutService IOSvc;
 	ArrayList<BookDTO> dto;
+	LoginService ls;
+	StatsService ss = null;
+	AccountService as = null;
 	
+	Parent root = null;
 	public void setRoot(Parent p) {
 		this.root = p;
 		IOSvc.setRoot(p);
-		setColumn();
-		IOSvc.getTable();
-		IOSvc.setAccCmb();
 		ss.setRoot(p, startDate, endDate);
 		as.setRoot(p);
 		
@@ -69,6 +64,10 @@ public class HomeController implements Initializable {
 			            	break;
 			            case "도서입출고":
 			            	System.out.println("Tab Selection changed : " + t1.getText());
+			            	setColumn();
+			            	//inOut();
+			            	IOSvc.getTable();
+			        		IOSvc.setAccCmb();
 			            	break;
 			            case "거래처관리":
 			            	System.out.println("Tab Selection changed : " + t1.getText());
@@ -102,7 +101,7 @@ public class HomeController implements Initializable {
 	}
 	
 	public void inOut() {
-		IOSvc.inOutService();
+		IOSvc.iOService();
 	}
 	
 	public void cancel() {
@@ -110,15 +109,15 @@ public class HomeController implements Initializable {
 	}
 
 	public void setColumn() {
-		bookNameColumn.setCellValueFactory(new PropertyValueFactory("name"));
-		stockColumn.setCellValueFactory(new PropertyValueFactory("total"));
+		fxCellBookName.setCellValueFactory(new PropertyValueFactory("name"));
+		fxCellBookTotal.setCellValueFactory(new PropertyValueFactory("total"));
 	}
 
 	public void selectTable(MouseEvent event) {
-		Label bookName = (Label)root.lookup("#bookName");
+		Label bookName = (Label)root.lookup("#lbbookName");
 		Label bookPrice = (Label)root.lookup("#bookPrice");
 		Label writerName = (Label)root.lookup("#writerName");
-		TableView<BookDTO> stockTable = (TableView)root.lookup("#stockTable");
+		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
 		//int sel = stockTable.getSelectionModel().getSelectedIndex();
 		BookDTO data = stockTable.getSelectionModel().getSelectedItem();
 		bookName.setText(data.getName());
