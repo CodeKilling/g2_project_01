@@ -88,8 +88,7 @@ public class inOutService {
 			// 5번째 = datepicker에서 선택한 날짜.toString()
 
 	public void inOutService() {
-		TextField inputStock = (TextField)root.lookup("#inputStock");
-		
+		TextField inputStock = (TextField)root.lookup("#inputStock");	
 		int stock;
 		if(Objects.equals(inputStock.getText(),null) || Objects.equals(inputStock.getText(),"")) {
 			stock = 0;
@@ -117,7 +116,7 @@ public class inOutService {
 			// 출고의 경우 stock의 값이 음수(-)로 들어옴으로 실제량+입력량의 합으로 계산
 			Common.MyAlert("실제 재고량보다 많은 출고량을 입력했습니다.");
 		}else if(inputStock.getText().equals(null) || Objects.equals(eventDate.getValue(),null)
-				|| cmbAccount.getValue().toString().equals(null)){ // 입출고량, 날짜, 거래처 칸중 하나라도 입력하지 않은 경우
+				|| Objects.equals(cmbAccount.getValue(),null)){ // 입출고량, 날짜, 거래처 칸중 하나라도 입력하지 않은 경우
 			Common.MyAlert("입력하지 않은 칸이 있습니다.");
 		}else {
 		      try {
