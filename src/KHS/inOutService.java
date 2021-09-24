@@ -49,7 +49,7 @@ public class inOutService {
 	
 	public void cancel() {
 		System.out.println("입력값 초기화");
-		Label bookName = (Label)root.lookup("#bookName");
+		Label bookName = (Label)root.lookup("#lbbookName");
 		Label bookPrice = (Label)root.lookup("#bookPrice");
 		Label writerName = (Label)root.lookup("#writerName");
 		
@@ -89,7 +89,13 @@ public class inOutService {
 
 	public void inOutService() {
 		TextField inputStock = (TextField)root.lookup("#inputStock");
-		int stock = Integer.parseInt(inputStock.getText());
+		
+		int stock;
+		if(Objects.equals(inputStock.getText(),null) || Objects.equals(inputStock.getText(),"")) {
+			stock = 0;
+		}else {
+			stock = Integer.parseInt(inputStock.getText());
+		}
 		
 		DatePicker eventDate = (DatePicker)root.lookup("#eventDate");
 		String FommatDate;

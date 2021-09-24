@@ -229,7 +229,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="bookName" prefHeight="32.0" prefWidth="220.0" text="도서명 Label">
+                                          <Label fx:id="lbbookName" prefHeight="32.0" prefWidth="220.0" text="도서명 Label">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>

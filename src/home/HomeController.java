@@ -74,7 +74,7 @@ public class HomeController implements Initializable{
 	}
 
 	public void selectTable(MouseEvent event) {
-		Label bookName = (Label)root.lookup("#bookName");
+		Label bookName = (Label)root.lookup("#lbbookName");
 		Label bookPrice = (Label)root.lookup("#bookPrice");
 		Label writerName = (Label)root.lookup("#writerName");
 		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
