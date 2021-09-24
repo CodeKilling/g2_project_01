@@ -8,12 +8,14 @@ import java.util.ArrayList;
 
 import common.BookDTO;
 import common.Common;
+import javafx.scene.control.TextField;
 
 public class dbService {
 	String sql;
 	Connection con;
 	PreparedStatement ps;
 	ResultSet rs;
+	inOutService IOSvc;
 	
 	public dbService() {
 		Common.MyConnection();
@@ -61,4 +63,66 @@ public class dbService {
 		}
 		return list;
 	}
+	
+	public int getAccId(String name) {
+		sql = "select ID from ACCOUNT where name = ?";
+		int id = 0;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@210.221.253.215:1521:xe","g2","oracle");
+			System.out.println("연결성공 : " + con);
+			ps = con.prepareStatement(sql);
+			ps.setString(1, name);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				id = rs.getInt("ID");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
+	
+	public int getBookId(String name) {
+		sql = "select ID from BOOK where name = ?";
+		int id = 0;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@210.221.253.215:1521:xe","g2","oracle");
+			System.out.println("연결성공 : " + con);
+			ps = con.prepareStatement(sql);
+			ps.setString(1, name);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				id = rs.getInt("ID");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
+	
+	/*
+	 *  로그인기능에서 id 값 받아오기
+	 *  ps.setString(1, 입력된 id값) 찾아 넣기
+	public int getMemId() {
+		sql = "select ID from MEMBER where USERID = ?";
+		int id = 0;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@210.221.253.215:1521:xe","g2","oracle");
+			System.out.println("연결성공 : " + con);
+			ps = con.prepareStatement(sql);
+			ps.setString(1, );
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				id = rs.getInt("ID");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
+	*/
+	
 }
