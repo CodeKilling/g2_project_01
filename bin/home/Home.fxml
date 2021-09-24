@@ -466,16 +466,16 @@
                               </HBox>
                            </top>
                            <center>
-                              <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                              <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="도서명" />
-                                  <TableColumn prefWidth="75.0" text="가격" />
-                                    <TableColumn prefWidth="75.0" text="거래처" />
-                                    <TableColumn prefWidth="75.0" text="입출고자명" />
-                                    <TableColumn prefWidth="75.0" text="입출고량" />
-                                    <TableColumn prefWidth="75.0" text="결과재고" />
-                                    <TableColumn prefWidth="75.0" text="현재재고" />
-                                    <TableColumn prefWidth="75.0" text="일자" />
+                                  <TableColumn fx:id="bookName" prefWidth="75.0" text="도서명" />
+                                  <TableColumn fx:id="price" prefWidth="75.0" text="가격" />
+                                    <TableColumn fx:id="accountName" prefWidth="75.0" text="거래처" />
+                                    <TableColumn fx:id="memberName" prefWidth="75.0" text="입출고자명" />
+                                    <TableColumn fx:id="inOut" prefWidth="75.0" text="입출고량" />
+                                    <TableColumn fx:id="resultTotal" prefWidth="75.0" text="결과재고" />
+                                    <TableColumn fx:id="total" prefWidth="75.0" text="현재재고" />
+                                    <TableColumn fx:id="recordDate" prefWidth="75.0" text="일자" />
                                 </columns>
                               </TableView>
                            </center>

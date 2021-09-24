@@ -1,30 +1,38 @@
 package common;
 
 public class snrDTO {
-	private int bookId;
-	private int memberId;
-	private int accountId;
-	private int inOut;
-	private String recordDate;
+	private String bookName; //도서명
+	private String price; //가격
+	private String accountName; //거래처
+	private String memberName; //입출고자명
+	private int inOut; //입출고량
+	private int resultTotal; //결과재고
+	private int total; //현재재고
+	private String recordDate; //일자
 	private int id;
-	private int resultTotal;
-	public int getBookId() {
-		return bookId;
+	public String getBookName() {
+		return bookName;
 	}
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
-	public int getMemberId() {
-		return memberId;
+	public String getPrice() {
+		return price;
 	}
-	public void setMemberId(int memberId) {
-		this.memberId = memberId;
+	public void setPrice(String price) {
+		this.price = price;
 	}
-	public int getAccountId() {
-		return accountId;
+	public String getAccountName() {
+		return accountName;
 	}
-	public void setAccountId(int accountId) {
-		this.accountId = accountId;
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 	public int getInOut() {
 		return inOut;
@@ -32,23 +40,29 @@ public class snrDTO {
 	public void setInOut(int inOut) {
 		this.inOut = inOut;
 	}
-	public String getRecordDate() {
-		return recordDate;
-	}
-	public void setRecordDate(String recordDate) {
-		this.recordDate = recordDate;
-	}
-
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public int getResultTotal() {
 		return resultTotal;
 	}
 	public void setResultTotal(int resultTotal) {
 		this.resultTotal = resultTotal;
 	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	public String getRecordDate() {
+		return recordDate;
+	}
+	public void setRecordDate(String recordDate) {
+		this.recordDate = recordDate;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 }
