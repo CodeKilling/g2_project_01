@@ -25,10 +25,7 @@ public class dbService {
 		sql = "select * from BOOK";
 		ArrayList<BookDTO> list = new ArrayList<BookDTO>();
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@210.221.253.215:1521:xe","g2","oracle");
-			System.out.println("연결성공 : " + con);
-			ps = con.prepareStatement(sql);
+			ps = Common.con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				BookDTO dto = new BookDTO();
@@ -50,10 +47,7 @@ public class dbService {
 		sql = "select NAME from ACCOUNT";
 		ArrayList list = new ArrayList();
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@210.221.253.215:1521:xe","g2","oracle");
-			System.out.println("연결성공 : " + con);
-			ps = con.prepareStatement(sql);
+			ps = Common.con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				list.add(rs.getString("NAME"));
@@ -68,10 +62,7 @@ public class dbService {
 		sql = "select ID from ACCOUNT where name = ?";
 		int id = 0;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@210.221.253.215:1521:xe","g2","oracle");
-			System.out.println("연결성공 : " + con);
-			ps = con.prepareStatement(sql);
+			ps = Common.con.prepareStatement(sql);
 			ps.setString(1, name);
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -87,10 +78,7 @@ public class dbService {
 		sql = "select ID from BOOK where name = ?";
 		int id = 0;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@210.221.253.215:1521:xe","g2","oracle");
-			System.out.println("연결성공 : " + con);
-			ps = con.prepareStatement(sql);
+			ps = Common.con.prepareStatement(sql);
 			ps.setString(1, name);
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -109,9 +97,6 @@ public class dbService {
 		sql = "select ID from MEMBER where USERID = ?";
 		int id = 0;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@210.221.253.215:1521:xe","g2","oracle");
-			System.out.println("연결성공 : " + con);
 			ps = con.prepareStatement(sql);
 			ps.setString(1, );
 			rs = ps.executeQuery();
