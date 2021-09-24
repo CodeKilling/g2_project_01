@@ -96,9 +96,11 @@ public class HomeController implements Initializable{
 		total.setCellValueFactory(new PropertyValueFactory("total"));
 		recordDate.setCellValueFactory(new PropertyValueFactory("recordDate"));
 	}
+	
 	public void todaySearch() {
 		ss.todaySearch();
 	}
+	
 	public void allSearch() {
 		ss.allSearch();
 	}
