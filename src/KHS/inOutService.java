@@ -120,6 +120,7 @@ public class inOutService {
 			Common.MyAlert("입력하지 않은 칸이 있습니다.");
 		}else {
 		      try {
+		    	 // 이건 왜 DB 쪽에서 안하고???
 		         CallableStatement cs = Common.con.prepareCall(sql);
 		         cs.setInt(1, bookId);
 		         if(Common.sessionID < 0) {

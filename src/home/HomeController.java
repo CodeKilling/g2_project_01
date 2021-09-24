@@ -33,7 +33,7 @@ import stats.StatsServiceImpl;
 public class HomeController implements Initializable{
 	@FXML DatePicker startDate, endDate;
 	@FXML TableColumn bookName, price, accountName, memberName, inOut, resultTotal, total, recordDate;
-	@FXML TableColumn fxaccountName, fxaccountWorkerName, fxaccountContactNumber;
+	//@FXML TableColumn fxaccountName, fxaccountWorkerName, fxaccountContactNumber;
 	@FXML TableColumn fxCellBookName, fxCellBookTotal;
 	TabPane tabpane = null;
 	
@@ -71,7 +71,7 @@ public class HomeController implements Initializable{
 			            	break;
 			            case "거래처관리":
 			            	System.out.println("Tab Selection changed : " + t1.getText());
-			            	AccountSetColumn();
+			            	//AccountSetColumn();
 			            	as.setView();
 			            	break;
 			            case "입출고현황":
@@ -136,11 +136,11 @@ public class HomeController implements Initializable{
 		recordDate.setCellValueFactory(new PropertyValueFactory("recordDate"));
 	}
 	
-	private void AccountSetColumn() {
-		fxaccountName.setCellValueFactory(new PropertyValueFactory("name"));
-		fxaccountWorkerName.setCellValueFactory(new PropertyValueFactory("workerName"));
-		fxaccountContactNumber.setCellValueFactory(new PropertyValueFactory("contactNumber"));
-	}
+//	private void AccountSetColumn() {
+//		fxaccountName.setCellValueFactory(new PropertyValueFactory("name"));
+//		fxaccountWorkerName.setCellValueFactory(new PropertyValueFactory("workerName"));
+//		fxaccountContactNumber.setCellValueFactory(new PropertyValueFactory("contactNumber"));
+//	}
 	
 	public void todaySearch() {
 		ss.todaySearch();
@@ -149,5 +149,20 @@ public class HomeController implements Initializable{
 	public void allSearch() {
 		ss.allSearch();
 	}
+	
+	public void OnAccountAdd() {
+		as.Add();
+	}
 
+	public void OnAccountModify() {
+		as.Modify();
+	}
+	
+	public void OnAccountDelete() {
+		as.Delete();
+	}
+	
+	public void OnAccountNew() {
+		as.clear();
+	}
 }
