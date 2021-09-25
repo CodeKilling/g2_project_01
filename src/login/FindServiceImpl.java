@@ -28,16 +28,20 @@ public class FindServiceImpl implements FindService {
 		TextField RTFid = (TextField) root.lookup("#RTFid");
 		TextField RTFpw = (TextField) root.lookup("#RTFpw");
 		TextField RTFpwc = (TextField) root.lookup("#RTFpwc");
+		TextField RTFname = (TextField) root.lookup("#RTFname");
+		TextField RTFpn = (TextField) root.lookup("#RTFpn");
 		Button BTNjoin = (Button) root.lookup("#BTNjoin");
 		Button BTNreset = (Button) root.lookup("#BTNreset");
+		Button BTNcancel = (Button)root.lookup("#BTNcancel");
+		Button BTNfind = (Button)root.lookup("#BTNfind");
+		
 		fxId.clear();
 		fxPwd.clear();
-		RTFid.setVisible(false);
-		RTFpw.setVisible(false);
-		RTFpwc.setVisible(false);
+		RTFid.setVisible(false);RTFname.setVisible(true);
+		RTFpw.setVisible(false);RTFpn.setVisible(true);
+		RTFpwc.setVisible(false);BTNfind.setVisible(true);
 		BTNjoin.setVisible(false);
 		BTNreset.setVisible(false);
-
 	}
 
 	public void BTNfindClicked() { //찾기 버튼 눌렀을 때
@@ -92,13 +96,19 @@ public class FindServiceImpl implements FindService {
 	}
 
 	@Override
-	public void rePwd() {
+	public void rePwd() {//비번재설정 눌렀을 때
+		String msg;
 		TextField RTFname = (TextField)root.lookup("#RTFname");
 		TextField RTFpn = (TextField)root.lookup("#RTFpn");
+		TextField RTFid = (TextField)root.lookup("#RTFid");
+		PasswordField RTFpw = (PasswordField)root.lookup("#RTFpw");
+		PasswordField RTFpwc = (PasswordField)root.lookup("#RTFpwc");
+		Button BTNreset = (Button)root.lookup("#BTNreset");
 		Button BTNjoin = (Button)root.lookup("#BTNjoin");
 		Button BTNfind = (Button)root.lookup("#BTNfind");
-		RTFname.setVisible(false); RTFpn.setVisible(false);
-		BTNjoin.setVisible(false); BTNfind.setVisible(false);
+		RTFname.setVisible(false); RTFpn.setVisible(false);RTFpw.setVisible(true);RTFpwc.setVisible(true);
+		RTFid.setVisible(true);
+		BTNjoin.setVisible(false); BTNfind.setVisible(false);BTNreset.setVisible(true);
 		
 	}
 
@@ -125,6 +135,31 @@ public class FindServiceImpl implements FindService {
 		RTFid.setVisible(true);RTFname.setVisible(true);
 		RTFpn.setVisible(true);RTFpw.setVisible(true);RTFpwc.setVisible(true);
 		BTNjoin.setVisible(true);   BTNfind.setVisible(true); BTNreset.setVisible(true);
+	}
+
+	@Override
+	public void BTNreset() {
+		String msg;
+		PasswordField RTFpw =(PasswordField)root.lookup("#RTFpw");
+		PasswordField RTFpwc =(PasswordField)root.lookup("#RTFpwc");
+		TextField RTFid = (TextField)root.lookup("#RTFid");
+		
+		if(db.CheckID(RTFid.getText())) {
+			if(RTFpw.getText().equals(RTFpwc.getText())) {
+				db.rePwd(RTFid.getText(), RTFpw.getText());
+				msg = "비밀번호가 재설정 되었습니다";
+						Common.MyAlert(msg);
+			}
+			else {
+				msg = "입력한 비밀번호와 일치하지 않습니다";
+				Common.MyAlert(msg);
+			}	
+		}else {
+			msg = "db 아이디 없음";
+			Common.MyAlert(msg);
+		}
+		
+
 	}
 
 }

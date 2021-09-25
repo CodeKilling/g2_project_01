@@ -9,4 +9,5 @@ public interface FindService {
 	public void cancel();
 	public void rePwd();
 	public void BTNfindClicked();
+	public void BTNreset();
 }

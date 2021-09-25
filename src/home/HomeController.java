@@ -38,6 +38,9 @@ public class HomeController implements Initializable {
 	public void cancel() {
 		ss.cancel();
 	}
+	public void BTNresetClick() {
+		ss.BTNreset();
+	}
 	
 
 	@Override

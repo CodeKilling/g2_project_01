@@ -113,7 +113,7 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="BTNreset" mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="재설정">
+                                    <Button fx:id="BTNreset" mnemonicParsing="false" onAction="#BTNresetClick" prefHeight="44.0" prefWidth="259.0" text="재설정">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
