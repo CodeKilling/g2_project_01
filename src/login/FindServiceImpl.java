@@ -77,13 +77,29 @@ public class FindServiceImpl implements FindService {
 			msg = "존재하지 않는 이름 입니다";
 		}
 		Common.MyAlert(msg);
+		if(dto != null) {
+			if(dto.getPhonenumber().equals(tfPhoneNumber.getText())) {
+		
 		TextField fxId = (TextField)root.lookup("#fxId");
+		
+		
 		fxId.setText(dto.getUserId());
+		tfName.clear();
+		tfPhoneNumber.clear();
+		
+			}
+		}
 	}
 
 	@Override
 	public void rePwd() {
-
+		TextField RTFname = (TextField)root.lookup("#RTFname");
+		TextField RTFpn = (TextField)root.lookup("#RTFpn");
+		Button BTNjoin = (Button)root.lookup("#BTNjoin");
+		Button BTNfind = (Button)root.lookup("#BTNfind");
+		RTFname.setVisible(false); RTFpn.setVisible(false);
+		BTNjoin.setVisible(false); BTNfind.setVisible(false);
+		
 	}
 
 	@Override
@@ -94,6 +110,9 @@ public class FindServiceImpl implements FindService {
 	@Override
 	public void cancel() { //취소 버튼 눌렀을 때
 		Button BTNcancel = (Button)root.lookup("#BTNcancel");
+		Button BTNjoin = (Button)root.lookup("#BTNjoin");
+		Button BTNfind = (Button)root.lookup("#BTNfind");
+		Button BTNreset = (Button)root.lookup("#BTNreset");
 		TextField fxId = (TextField)root.lookup("#fxId");
 		PasswordField fxPwd = (PasswordField)root.lookup("#fxPwd");
 		TextField RTFid = (TextField)root.lookup("#RTFid");
@@ -103,8 +122,9 @@ public class FindServiceImpl implements FindService {
 		PasswordField RTFpwc =(PasswordField)root.lookup("#RTFpwc");
 		fxId.clear();fxPwd.clear();RTFid.clear();RTFname.clear();RTFpn.clear();
 		RTFpw.clear();RTFpwc.clear();
-		
-		
+		RTFid.setVisible(true);RTFname.setVisible(true);
+		RTFpn.setVisible(true);RTFpw.setVisible(true);RTFpwc.setVisible(true);
+		BTNjoin.setVisible(true);   BTNfind.setVisible(true); BTNreset.setVisible(true);
 	}
 
 }
