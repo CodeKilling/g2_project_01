@@ -140,7 +140,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <TextField prefHeight="21.0" prefWidth="221.0">
+                                          <TextField fx:id="bookTF_Name" prefHeight="21.0" prefWidth="221.0">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
@@ -154,7 +154,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <TextField prefHeight="21.0" prefWidth="221.0">
+                                          <TextField fx:id="bookTF_Price" prefHeight="21.0" prefWidth="221.0">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
@@ -168,7 +168,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <TextField prefHeight="21.0" prefWidth="221.0">
+                                          <TextField fx:id="bookTF_Writer" prefHeight="21.0" prefWidth="221.0">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
@@ -177,22 +177,22 @@
                                     </HBox>
                                     <HBox prefHeight="45.0" prefWidth="665.0">
                                        <children>
-                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="등록">
+                                          <Button mnemonicParsing="false" onAction="#OnBookAdd" prefHeight="44.0" prefWidth="168.0" text="등록">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
                                           </Button>
-                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="수정">
+                                          <Button mnemonicParsing="false" onAction="#OnBookModify" prefHeight="44.0" prefWidth="168.0" text="수정">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
                                           </Button>
-                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="삭제">
+                                          <Button mnemonicParsing="false" onAction="#OnBookDelete" prefHeight="44.0" prefWidth="168.0" text="삭제">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
                                           </Button>
-                                          <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="취소">
+                                          <Button mnemonicParsing="false" onAction="#OnBookNew" prefHeight="44.0" prefWidth="168.0" text="취소">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
@@ -206,11 +206,11 @@
                               </VBox>
                            </right>
                            <left>
-                              <TableView prefHeight="403.0" prefWidth="331.0" BorderPane.alignment="CENTER">
+                              <TableView fx:id="fxtableviewBook" prefHeight="403.0" prefWidth="331.0" BorderPane.alignment="CENTER">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="도서명" />
-                                  <TableColumn prefWidth="75.0" text="작가명" />
-                                    <TableColumn prefWidth="75.0" text="가격" />
+                                  <TableColumn fx:id="tableColumnBookName" prefWidth="75.0" text="도서명" />
+                                  <TableColumn fx:id="tableColumnBookWriter" prefWidth="75.0" text="작가명" />
+                                    <TableColumn fx:id="tableColumnBookPrice" prefWidth="75.0" text="가격" />
                                 </columns>
                               </TableView>
                            </left>

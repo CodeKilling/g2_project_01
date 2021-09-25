@@ -79,61 +79,79 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public void Add() {
-		arr = adbs.addAccount(tF_AccountName.getText(), tF_ContactNumber.getText(), tF_WorkerName.getText());
-		if (arr.size() > 0) {
-			Common.MyAlert("등록 성공!");
-			this.setList(arr);
-			tv.getSelectionModel().select(arr.size()-1);
-		} else {
-			Common.MyAlert("등록 실패! (ex : 거래처명이 이미 존재 합니다.)");
+		if(tF_AccountName.getText().isEmpty()
+				|| tF_ContactNumber.getText().isEmpty()
+				|| tF_WorkerName.getText().isEmpty()) {
+			Common.MyAlert("공백이 있습니다.");
+		}else {
+			arr = adbs.addAccount(tF_AccountName.getText(), tF_ContactNumber.getText(), tF_WorkerName.getText());
+			if (arr.size() > 0) {
+				Common.MyAlert("등록 성공!");
+				this.setList(arr);
+				tv.getSelectionModel().select(arr.size()-1);
+			} else {
+				Common.MyAlert("등록 실패! (ex : 거래처명이 이미 존재 합니다.)");
+			}
 		}
 	}
 
 	@Override
 	public void Modify() {
-		if (selectionID == -1) {
-			Common.MyAlert("수정할 거래처를 선택하세요.");
-		}
-		String msg = oldAccountName + " -> " + tF_AccountName.getText() + ", " + oldContactNumber + " -> "
-				+ tF_ContactNumber.getText() + ", " + oldWorkerName + " -> " + tF_WorkerName.getText() + ", "
-				+ "로 수정하시겠습니까?";
-		boolean bool = Common.OkCancleAlert(msg);
-		if (bool) {
-			System.out.println("Account Modify OK");
-			arr = adbs.modifyAccount(selectionID, tF_AccountName.getText(), tF_ContactNumber.getText(),
-					tF_WorkerName.getText());
-			if (arr.size() > 0) {
-				Common.MyAlert("수정 성공!");
-				this.setList(arr);
-				tv.getSelectionModel().select(selectionID);
-			} else {
-				Common.MyAlert("수정 실패! (ex : .)");
+		if(tF_AccountName.getText().isEmpty()
+				|| tF_ContactNumber.getText().isEmpty()
+				|| tF_WorkerName.getText().isEmpty()) {
+			Common.MyAlert("공백이 있습니다.");
+		}else {
+			if (selectionID == -1) {
+				Common.MyAlert("수정할 거래처를 선택하세요.");
 			}
-		} else {
-			System.out.println("Account Modify CANCLE");
+			String msg = oldAccountName + " -> " + tF_AccountName.getText() + ", " + oldContactNumber + " -> "
+					+ tF_ContactNumber.getText() + ", " + oldWorkerName + " -> " + tF_WorkerName.getText() + ", "
+					+ "로 수정하시겠습니까?";
+			boolean bool = Common.OkCancleAlert(msg);
+			if (bool) {
+				System.out.println("Account Modify OK");
+				arr = adbs.modifyAccount(selectionID, tF_AccountName.getText(), tF_ContactNumber.getText(),
+						tF_WorkerName.getText());
+				if (arr.size() > 0) {
+					Common.MyAlert("수정 성공!");
+					this.setList(arr);
+					tv.getSelectionModel().select(selectionID);
+				} else {
+					Common.MyAlert("수정 실패! (ex : .)");
+				}
+			} else {
+				System.out.println("Account Modify CANCLE");
+			}
 		}
 	}
 
 	@Override
 	public void Delete() {
-		if (selectionID == -1) {
-			Common.MyAlert("삭제할 거래처를 선택하세요.");
-		}
-		String msg = oldAccountName + ", "
-				   + oldContactNumber + ", "
-				   + oldWorkerName + "정말 삭제하시겠습니까?";
-		boolean bool = Common.OkCancleAlert(msg);
-		if (bool) {
-			System.out.println("Account Delete OK");
-			arr = adbs.deleteAccount(selectionID);
-			if (arr.size() > 0) {
-				Common.MyAlert("삭제 성공!");
-				this.setList(arr);
-			} else {
-				Common.MyAlert("삭제 실패! (ex : .)");
+		if(tF_AccountName.getText().isEmpty()
+				|| tF_ContactNumber.getText().isEmpty()
+				|| tF_WorkerName.getText().isEmpty()) {
+			Common.MyAlert("공백이 있습니다.");
+		}else {
+			if (selectionID == -1) {
+				Common.MyAlert("삭제할 거래처를 선택하세요.");
 			}
-		} else {
-			System.out.println("Account Delete CANCLE");
+			String msg = oldAccountName + ", "
+					   + oldContactNumber + ", "
+					   + oldWorkerName + "정말 삭제하시겠습니까?";
+			boolean bool = Common.OkCancleAlert(msg);
+			if (bool) {
+				System.out.println("Account Delete OK");
+				arr = adbs.deleteAccount(selectionID);
+				if (arr.size() > 0) {
+					Common.MyAlert("삭제 성공!");
+					this.setList(arr);
+				} else {
+					Common.MyAlert("삭제 실패! (ex : .)");
+				}
+			} else {
+				System.out.println("Account Delete CANCLE");
+			}
 		}
 	}
 

@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 
 import account.AccountService;
 import account.AccountServiceImpl;
+import book.BookService;
+import book.BookServiceImpl;
 import KHS.inOutService;
 import common.BookDTO;
 import common.Common;
@@ -38,10 +40,10 @@ public class HomeController implements Initializable{
 	TabPane tabpane = null;
 	
 	inOutService IOSvc;
-	ArrayList<BookDTO> dto;
 	LoginService ls;
 	StatsService ss = null;
 	AccountService as = null;
+	BookService bs = null;
 	
 	Parent root = null;
 	public void setRoot(Parent p) {
@@ -49,6 +51,7 @@ public class HomeController implements Initializable{
 		IOSvc.setRoot(p);
 		ss.setRoot(p, startDate, endDate);
 		as.setRoot(p);
+		bs.setRoot(p);
 		
 		tabpane = (TabPane)root.lookup("#fxTabPane");
 		tabpane.getSelectionModel().selectedItemProperty().addListener(
@@ -61,6 +64,7 @@ public class HomeController implements Initializable{
 			            	break;
 			            case "도서관리":
 			            	System.out.println("Tab Selection changed : " + t1.getText());
+			            	bs.setView();
 			            	break;
 			            case "도서입출고":
 			            	System.out.println("Tab Selection changed : " + t1.getText());
@@ -94,10 +98,10 @@ public class HomeController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Common.MyConnection();
 		IOSvc = new inOutService();
-		dto = new ArrayList<BookDTO>();
 		ls = new LoginServiceImpl();
 		ss = new StatsServiceImpl();
 		as = new AccountServiceImpl();
+		bs = new BookServiceImpl();
 	}
 	
 	public void inOut() {
@@ -164,5 +168,18 @@ public class HomeController implements Initializable{
 	
 	public void OnAccountNew() {
 		as.clear();
+	}
+	
+	public void OnBookAdd() {
+		bs.Add();
+	}
+	public void OnBookModify() {
+		bs.Modify();
+	}
+	public void OnBookDelete() {
+		bs.Delete();
+	}
+	public void OnBookNew() {
+		bs.clear();
 	}
 }
