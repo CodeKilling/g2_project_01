@@ -26,6 +26,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import login.FindService;
+import login.FindServiceImpl;
 import login.LoginService;
 import login.LoginServiceImpl;
 import stats.StatsService;
@@ -41,6 +43,7 @@ public class HomeController implements Initializable{
 	
 	inOutService IOSvc;
 	LoginService ls;
+	FindService fs;
 	StatsService ss = null;
 	AccountService as = null;
 	BookService bs = null;
@@ -93,12 +96,27 @@ public class HomeController implements Initializable{
 		PasswordField pwd = (PasswordField) root.lookup("#fxPwd");
 		ls.Login(id.getText(), pwd.getText());
 	}
-	
+	public void findId() {
+		fs.findId();
+	}
+	public void BTNfindClicked() {
+		fs.BTNfindClicked();
+	}
+	public void rePwd() {
+		fs.rePwd();
+	}
+	public void homecancel() {
+		fs.homecancel();
+	}
+	public void BTNresetClick() {
+		fs.BTNreset();
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Common.MyConnection();
 		IOSvc = new inOutService();
 		ls = new LoginServiceImpl();
+		fs = new FindServiceImpl();
 		ss = new StatsServiceImpl();
 		as = new AccountServiceImpl();
 		bs = new BookServiceImpl();

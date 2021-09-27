@@ -51,12 +51,12 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="아이디찾기">
+                                    <Button fx:id="FindID" mnemonicParsing="false" onAction="#findId" prefHeight="44.0" prefWidth="168.0" text="아이디찾기">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="비번재설정">
+                                    <Button mnemonicParsing="false" onAction="#rePwd" prefHeight="44.0" prefWidth="168.0" text="비번재설정">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -72,47 +72,47 @@
                            <right>
                               <VBox prefHeight="403.0" prefWidth="255.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <TextField promptText="id">
+                                    <TextField fx:id="RTFid" promptText="id">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </TextField>
-                                    <TextField promptText="이름">
+                                    <TextField fx:id="RTFname" promptText="이름">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </TextField>
-                                    <TextField promptText="01012341234">
+                                    <TextField fx:id="RTFpn" promptText="01012341234">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </TextField>
-                                    <PasswordField promptText="password">
+                                    <PasswordField fx:id="RTFpw" promptText="password">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </PasswordField>
-                                    <PasswordField promptText="password confirm">
+                                    <PasswordField fx:id="RTFpwc" promptText="password confirm">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </PasswordField>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="가입">
+                                    <Button fx:id="BTNjoin" mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="가입">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="찾기">
+                                    <Button fx:id="BTNfind" mnemonicParsing="false" onAction="#BTNfindClicked" prefHeight="44.0" prefWidth="259.0" text="찾기">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="재설정">
+                                    <Button fx:id="BTNreset" mnemonicParsing="false" onAction="#BTNresetClick" prefHeight="44.0" prefWidth="259.0" text="재설정">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="취소">
+                                    <Button fx:id="BTNcancel" mnemonicParsing="false" onAction="#homecancel" prefHeight="44.0" prefWidth="259.0" text="취소">
                                        <font>
                                           <Font size="24.0" />
                                        </font>

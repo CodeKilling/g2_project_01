@@ -5,6 +5,7 @@ public class MemberDTO {
 	private String name;
 	private String pwd;
 	private int id;
+	private String Phonenumber;
 	public String getUserId() {
 		return userId;
 	}
@@ -28,6 +29,12 @@ public class MemberDTO {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getPhonenumber() {
+		return Phonenumber;
+	}
+	public void setPhonenumber(String phonenumber) {
+		this.Phonenumber = phonenumber;
 	}
 
 }
