@@ -6,6 +6,6 @@ public interface MemService {
 	public void setRoot(Parent root);
 	public void join();
 	public void membership();
-	public void cancel();
+	public void cancel_join();
 	
 }

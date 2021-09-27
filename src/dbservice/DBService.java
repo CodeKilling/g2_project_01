@@ -1,9 +1,9 @@
 package dbservice;
 
-import dto.MemberDTO;
+import dto.MembershipDTO;
 
 public interface DBService {
 	public int checkInfo(String userId);
-	public int insertMember(MemberDTO dto);
+	public int insertMember(MembershipDTO dto);
 
 }

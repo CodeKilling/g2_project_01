@@ -3,7 +3,7 @@ package memservice;
 import common.Common;
 import dbservice.DBService;
 import dbservice.DBServiceImpl;
-import dto.MemberDTO;
+import dto.MembershipDTO;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -14,7 +14,7 @@ public class MemServiceImpl implements MemService{
 	Parent root;
 	DBService db;
 	Common common;
-	MemberDTO dto = new MemberDTO();
+	MembershipDTO dto = new MembershipDTO();
 	
 	public MemServiceImpl() {db = new DBServiceImpl();}
 	
@@ -32,10 +32,10 @@ public class MemServiceImpl implements MemService{
 		PasswordField pwd2 = (PasswordField)root.lookup("#memPwd2");
 		
 		Button membership = (Button)root.lookup("#membership");
-		Button cancel = (Button)root.lookup("#cancel");
+		Button cancel_join = (Button)root.lookup("#cancel_join");
 		
 		membership.setVisible(true);
-		cancel.setVisible(true);	
+		cancel_join.setVisible(true);	
 	
 		id.setVisible(true);
 		name.setVisible(true);
@@ -95,7 +95,7 @@ public class MemServiceImpl implements MemService{
 		}
 
 	}
-	public void cancel() {
+	public void cancel_join() {
 		System.out.println("취소 버튼 클릭");
 		
 		TextField id = (TextField)root.lookup("#memId");
@@ -110,7 +110,7 @@ public class MemServiceImpl implements MemService{
 		pwd.clear();
 		pwd2.clear();
 	}
-	public boolean checkPwd(MemberDTO dto) { //비밀번호 확인
+	public boolean checkPwd(MembershipDTO dto) { //비밀번호 확인
 
 		if(dto.getPwd().equals(dto.getPwd2())){
 			return true; 

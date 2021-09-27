@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import common.Common;
-import dto.MemberDTO;
+import dto.MembershipDTO;
 
 public class DBServiceImpl implements DBService{
 
@@ -36,7 +36,7 @@ public class DBServiceImpl implements DBService{
 	}
 
 	@Override
-	public int insertMember(MemberDTO dto) {
+	public int insertMember(MembershipDTO dto) {
 		System.out.println("DB에 회원가입 합니다.");
 		String sql = "INSERT INTO member(USERID,NAME,PWD,PHONENUMBER) VALUES(?,?,?,?)";
 		
