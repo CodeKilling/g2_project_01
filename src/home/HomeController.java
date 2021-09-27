@@ -3,15 +3,14 @@ package home;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
+import KHS.inOutService;
 import account.AccountService;
 import account.AccountServiceImpl;
-import KHS.inOutService;
 import common.BookDTO;
 import common.Common;
-import javafx.fxml.FXML;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.DatePicker;
@@ -45,8 +44,11 @@ public class HomeController implements Initializable{
 	AccountService as = null;
 
 	Parent root = null;
-	
+	public HomeController() {
+		System.out.println("홈컨트롤러");
+	}
 	public void setRoot(Parent p) {
+		System.out.println("setRoot 출력");
 		this.root = p;
 		IOSvc.setRoot(p);
 		ss.setRoot(p, startDate, endDate);
@@ -67,6 +69,7 @@ public class HomeController implements Initializable{
 			            case "도서입출고":
 			            	System.out.println("Tab Selection changed : " + t1.getText());
 			            	setColumn();
+			            	System.out.println("출력여부확인");
 			            	//inOut();
 			            	IOSvc.getTable();
 			        		IOSvc.setAccCmb();
@@ -103,7 +106,7 @@ public class HomeController implements Initializable{
 	}
 	
 	public void inOut() {
-		IOSvc.inOutService();
+		IOSvc.IOService();
 	}
 	
 	public void cancel() {

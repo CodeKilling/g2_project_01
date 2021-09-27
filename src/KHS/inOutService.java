@@ -20,17 +20,20 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class inOutService {
-	Parent root;
+	static Parent root;
 	dbService db;
 	ArrayList<BookDTO> dto;
+
 	
 	public inOutService() {
 		db = new dbService();
 		dto = new ArrayList<BookDTO>();
+		System.out.println("인아웃서비스 출력확인");
 	}
 	
 	public void setRoot(Parent root) {
 		this.root = root;
+		System.out.println("인아웃 루트 : " + root);
 	}
 	
 	public void getTable() { 
@@ -87,7 +90,7 @@ public class inOutService {
 			// 4번째 = 입출고량 >> #inputStock textfield 값을 가져옴
 			// 5번째 = datepicker에서 선택한 날짜.toString()
 
-	public void inOutService() {
+	public void IOService() {
 
 		int stock = txtStock(); // JavaFx inputStock 에 입력한 숫자를 가져옴
 		// inputStock에 아무 값이 입력되지 않았다면 0 을 반환하도록 함
@@ -138,7 +141,7 @@ public class inOutService {
 	
 	public String getBookName() {
 		String name;
-		System.out.println("테이블을 못찾음");
+		System.out.println("root " + root);
 		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
 		System.out.println("테이블 찾기까진 됨");
 		BookDTO data = stockTable.getSelectionModel().getSelectedItem();
@@ -184,7 +187,7 @@ public class inOutService {
 		}
 		return stock;
 	}
-	
+
 	public String eventDate() {
 		DatePicker eventDate = (DatePicker)root.lookup("#eventDate");
 		String FormatDate;

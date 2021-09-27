@@ -1,7 +1,6 @@
 package KHS;
 
 import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,17 +8,19 @@ import java.util.ArrayList;
 
 import common.BookDTO;
 import common.Common;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
 
-public class dbService {
+public class dbService{
 	String sql;
 	PreparedStatement ps;
 	ResultSet rs;
+	Parent root;
 	inOutService IOSvc;
 	
 	public dbService() {
 		//Common.MyConnection();
 	}
+	
 	
 	public ArrayList<BookDTO> getDB(){	// BOOK db에 있는 값 가져오기	
 		sql = "select * from BOOK";
@@ -95,9 +96,8 @@ public class dbService {
 	// 0927 이하 작성
 	
 	public ArrayList<BookDTO> renewTable() {
-		IOSvc = new inOutService();
 		ArrayList<BookDTO> list = new ArrayList<BookDTO>();
-		
+		IOSvc = new inOutService();
 		int bookId = IOSvc.findBookId(); // 현재 테이블뷰에 선택된 책의 id(시퀀스) 값
 		int AccId = IOSvc.findAccId(); // 현재 선택된 거래처의 id(시퀀스) 값
 		
@@ -134,4 +134,5 @@ public class dbService {
 		 return list;
 	}
 	
+
 }
