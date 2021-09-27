@@ -117,8 +117,8 @@ public class dbService{
 	         cs.execute();
 	         ResultSet rs = (ResultSet)cs.getObject(6);
 	         while(rs.next()) {
-	            System.out.println(rs.getString("name"));
-	            System.out.println(rs.getInt("total"));
+//	            System.out.println(rs.getString("name"));
+//	            System.out.println(rs.getInt("total"));
 	            
 	            BookDTO dto = new BookDTO();
 	            dto.setName(rs.getString("NAME"));
