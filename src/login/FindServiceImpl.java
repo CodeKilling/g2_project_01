@@ -155,7 +155,7 @@ public class FindServiceImpl implements FindService {
 				Common.MyAlert(msg);
 			}	
 		}else {
-			msg = "db 아이디 없음";
+			msg = "존재하지 않는 아이디 입니다";
 			Common.MyAlert(msg);
 		}
 		
