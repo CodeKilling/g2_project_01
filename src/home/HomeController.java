@@ -31,6 +31,7 @@ import stats.StatsServiceImpl;
 
 
 public class HomeController implements Initializable{
+
 	@FXML DatePicker startDate, endDate;
 	@FXML TableColumn bookName, price, accountName, memberName, inOut, resultTotal, total, recordDate;
 	@FXML TableColumn fxaccountName, fxaccountWorkerName, fxaccountContactNumber;
@@ -42,8 +43,9 @@ public class HomeController implements Initializable{
 	LoginService ls;
 	StatsService ss = null;
 	AccountService as = null;
-	
+
 	Parent root = null;
+	
 	public void setRoot(Parent p) {
 		this.root = p;
 		IOSvc.setRoot(p);
@@ -101,7 +103,7 @@ public class HomeController implements Initializable{
 	}
 	
 	public void inOut() {
-		IOSvc.iOService();
+		IOSvc.inOutService();
 	}
 	
 	public void cancel() {

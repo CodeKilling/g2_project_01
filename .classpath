@@ -8,6 +8,5 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFx"/>
 	<classpathentry kind="lib" path="lib/ojdbc6.jar"/>
-	<classpathentry kind="src" path="/scene-06-quiz"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
