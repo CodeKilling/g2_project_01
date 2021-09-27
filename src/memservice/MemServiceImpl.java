@@ -13,7 +13,6 @@ public class MemServiceImpl implements MemService{
 	
 	Parent root;
 	DBService db;
-	Common common;
 	MembershipDTO dto = new MembershipDTO();
 	
 	public MemServiceImpl() {db = new DBServiceImpl();}
@@ -74,21 +73,21 @@ public class MemServiceImpl implements MemService{
 		if(result == 1 && chkPwd == true) {
 			int insert = db.insertMember(dto);
 			if(insert == 1) {
-				common.MyAlert("회원가입 성공");	
+				Common.MyAlert("회원가입 성공");	
 			}
 		}else if (result == 0 && chkPwd == true){
 			if(empty) {
-				common.MyAlert("입력하지 않은 항목을 확인하십시오.");
+				Common.MyAlert("입력하지 않은 항목을 확인하십시오.");
 			}else {
-				common.MyAlert("동일한 아이디가 존재합니다.");
+				Common.MyAlert("동일한 아이디가 존재합니다.");
 				id.clear();
 			}
 		}//else if(result == 1 && chkPwd == false) {
 		 else {
 			if(empty) {
-				common.MyAlert("입력하지 않은 항목을 확인하십시오.");
+				Common.MyAlert("입력하지 않은 항목을 확인하십시오.");
 			}else {
-				common.MyAlert("비밀번호가 일치하지 않습니다.");
+				Common.MyAlert("비밀번호가 일치하지 않습니다.");
 				pwd.clear();
 				pwd2.clear();
 			}
