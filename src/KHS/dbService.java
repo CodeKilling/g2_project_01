@@ -1,9 +1,10 @@
 package KHS;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import common.BookDTO;
@@ -12,7 +13,6 @@ import javafx.scene.control.TextField;
 
 public class dbService {
 	String sql;
-	Connection con;
 	PreparedStatement ps;
 	ResultSet rs;
 	inOutService IOSvc;
@@ -25,10 +25,7 @@ public class dbService {
 		sql = "select * from BOOK";
 		ArrayList<BookDTO> list = new ArrayList<BookDTO>();
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@210.221.253.215:1521:xe","g2","oracle");
-			System.out.println("연결성공 : " + con);
-			ps = con.prepareStatement(sql);
+			ps = Common.con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				BookDTO dto = new BookDTO();
@@ -50,10 +47,7 @@ public class dbService {
 		sql = "select NAME from ACCOUNT";
 		ArrayList list = new ArrayList();
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@210.221.253.215:1521:xe","g2","oracle");
-			System.out.println("연결성공 : " + con);
-			ps = con.prepareStatement(sql);
+			ps = Common.con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				list.add(rs.getString("NAME"));
@@ -68,10 +62,7 @@ public class dbService {
 		sql = "select ID from ACCOUNT where name = ?";
 		int id = 0;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@210.221.253.215:1521:xe","g2","oracle");
-			System.out.println("연결성공 : " + con);
-			ps = con.prepareStatement(sql);
+			ps = Common.con.prepareStatement(sql);
 			ps.setString(1, name);
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -87,10 +78,7 @@ public class dbService {
 		sql = "select ID from BOOK where name = ?";
 		int id = 0;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@210.221.253.215:1521:xe","g2","oracle");
-			System.out.println("연결성공 : " + con);
-			ps = con.prepareStatement(sql);
+			ps = Common.con.prepareStatement(sql);
 			ps.setString(1, name);
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -99,30 +87,50 @@ public class dbService {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("책의 id 값 : " + id);
 		return id;
 	}
 	
-	/*
-	 *  로그인기능에서 id 값 받아오기
-	 *  ps.setString(1, 입력된 id값) 찾아 넣기
-	public int getMemId() {
-		sql = "select ID from MEMBER where USERID = ?";
-		int id = 0;
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@210.221.253.215:1521:xe","g2","oracle");
-			System.out.println("연결성공 : " + con);
-			ps = con.prepareStatement(sql);
-			ps.setString(1, );
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				id = rs.getInt("ID");
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return id;
+	// 0927 이하 작성
+	
+	public ArrayList<BookDTO> renewTable() {
+		IOSvc = new inOutService();
+		ArrayList<BookDTO> list = new ArrayList<BookDTO>();
+		
+		int bookId = IOSvc.findBookId(); // 현재 테이블뷰에 선택된 책의 id(시퀀스) 값
+		int AccId = IOSvc.findAccId(); // 현재 선택된 거래처의 id(시퀀스) 값
+		
+		sql = "begin procedure_snr(?,?,?,?,?,?); end;";
+		 try {
+	         CallableStatement cs = Common.con.prepareCall(sql);
+	         cs.setInt(1, bookId);
+	         if(Common.sessionID < 0) {
+	        	 Common.MyAlert("로그인 하고 테스트 하세요.");
+	        	 // 이 조건문 차후 필요없어짐. 차후 삭제 할것.
+	         }
+	         cs.setInt(2, Common.sessionID); // 로그인한 멤버 id(시퀀스 값) from MemberDTO ?
+	         cs.setInt(3, AccId); // 거래처의 id 값
+	         cs.setInt(4, IOSvc.txtStock()); // #inputStock
+	         cs.setString(5, IOSvc.eventDate()); // #eventDate
+	         cs.registerOutParameter(6, oracle.jdbc.OracleTypes.CURSOR);
+	         cs.execute();
+	         ResultSet rs = (ResultSet)cs.getObject(6);
+	         while(rs.next()) {
+	            System.out.println(rs.getString("name"));
+	            System.out.println(rs.getInt("total"));
+	            
+	            BookDTO dto = new BookDTO();
+	            dto.setName(rs.getString("NAME"));
+				dto.setPrice(rs.getString("PRICE"));
+				dto.setWriter(rs.getString("WRITER"));
+				dto.setTotal(rs.getInt("TOTAL"));
+				dto.setId(rs.getInt("ID"));
+				list.add(dto);	// 프로시저 내에서 갱신된 bookTable의 정보를 list에 저장함
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }
+		 return list;
 	}
-	*/
 	
 }

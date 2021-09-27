@@ -43,13 +43,13 @@ public class inOutService {
 		for(int i = 0; i < dto.size(); i++) {
 			view.add(dto.get(i));
 		}
-		TableView<BookDTO> stockTable = (TableView)root.lookup("#stockTable");
+		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
 		stockTable.setItems(view);
 	}
 	
 	public void cancel() {
 		System.out.println("입력값 초기화");
-		Label bookName = (Label)root.lookup("#bookName");
+		Label bookName = (Label)root.lookup("#lbbookName");
 		Label bookPrice = (Label)root.lookup("#bookPrice");
 		Label writerName = (Label)root.lookup("#writerName");
 		
@@ -88,55 +88,27 @@ public class inOutService {
 			// 5번째 = datepicker에서 선택한 날짜.toString()
 
 	public void inOutService() {
-		TextField inputStock = (TextField)root.lookup("#inputStock");
-		int stock;
-		if(Objects.equals(inputStock.getText(),null)|| Objects.equals(inputStock.getText(), "")) {
-			stock = 0;
-		}else {
-			stock = Integer.parseInt(inputStock.getText());
-		}
 		
-		DatePicker eventDate = (DatePicker)root.lookup("#eventDate");
-		String FommatDate;
-		if(Objects.equals(eventDate.getValue(),null)) { // 날짜를 입력하지 않은 경우 에러가 발생하지 않도록 함
-			FommatDate = null;
-		}else {
-			FommatDate = eventDate.getValue().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-		}
+		int stock = txtStock(); // JavaFx inputStock 에 입력한 숫자를 가져옴
+		// inputStock에 아무 값이 입력되지 않았다면 0 을 반환하도록 함
+		
+		String FormatDate = eventDate();
+		// JavaFx DatePicker에 입력된 날짜를 미리 지정한 날짜 형식으로 가져옴
+		// 날짜가 선택되지 않은 경우에는 null 값을 가짐
 		
 		ComboBox cmbAccount = (ComboBox)root.lookup("#cmbAccount");
-		
-		String sql = "begin procedure_snr(?,?,?,?,?,?); end;";
-		
 		int realStock = findStock(); // 현재 테이블뷰에 선택된 책의 실제 재고량을 저장하는 변수
-		int bookId = findBookId(); // 현재 테이블뷰에 선택된 책의 id(시퀀스) 값
-		int AccId = findAccId(); // 현재 선택된 거래처의 id(시퀀스) 값
 		
 		if(realStock + stock < 0) { // 현재 저장된 책 재고보다 많이 출고하려고 할 경우 경고 메세지 출력
 			// 출고의 경우 stock의 값이 음수(-)로 들어옴으로 실제량+입력량의 합으로 계산
 			Common.MyAlert("실제 재고량보다 많은 출고량을 입력했습니다.");
-		}else if(inputStock.getText().equals(null) || Objects.equals(eventDate.getValue(),null)
-				|| Objects.equals(cmbAccount.getValue(),null)){ // 입출고량, 날짜, 거래처 칸중 하나라도 입력하지 않은 경우
+		}else if(stock == 0 || FormatDate.equals(null)
+				|| Objects.equals(cmbAccount.getValue(),null)){ 
+			// 입출고량, 날짜, 거래처 칸중 하나라도 입력하지 않은 경우
 			Common.MyAlert("입력하지 않은 칸이 있습니다.");
 		}else {
-		      try {
-		         CallableStatement cs = Common.con.prepareCall(sql);
-		         cs.setInt(1, bookId);
-		         cs.setInt(2, 1); // 로그인한 멤버 id(시퀀스 값) from MemberDTO ?
-		         cs.setInt(3, AccId); // 거래처의 id 값
-		         cs.setInt(4, stock); // #inputStock
-		         cs.setString(5, FommatDate); // #eventDate
-		         cs.registerOutParameter(6, oracle.jdbc.OracleTypes.CURSOR);
-		         cs.execute();
-		         ResultSet rs = (ResultSet)cs.getObject(6);
-		         while(rs.next()) {
-		            System.out.println(rs.getString("name"));
-		            System.out.println(rs.getInt("total"));
-		         }
-		         getTable(); // 갱신된 정보로 테이블을 셋팅함
-		      } catch (SQLException e) {
-		         e.printStackTrace();
-		      }
+			ArrayList<BookDTO> dto = db.renewTable();
+			viewStockTable(dto);
 		}
 	}
 	
@@ -163,10 +135,14 @@ public class inOutService {
 		return AccId;
 	}
 	
+	
 	public String getBookName() {
 		String name;
-		TableView<BookDTO> stockTable = (TableView)root.lookup("#stockTable");
+		System.out.println("테이블을 못찾음");
+		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
+		System.out.println("테이블 찾기까진 됨");
 		BookDTO data = stockTable.getSelectionModel().getSelectedItem();
+		System.out.println("테이블에서 데이터를 선택하는 것이 안됨.");
 		name = data.getName().toString();
 		System.out.println("책이름 : " + name);
 		return name;
@@ -185,7 +161,7 @@ public class inOutService {
 	}
 	
 	public int findStock() {	
-		TableView<BookDTO> stockTable = (TableView)root.lookup("#stockTable");
+		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr"); 
 		int bookStock = 0;
 		try {
 			BookDTO data = stockTable.getSelectionModel().getSelectedItem();
@@ -196,4 +172,27 @@ public class inOutService {
 		return bookStock;
 	}
 	
+	// 0927 이하 작성
+	
+	public int txtStock() { // javaFx textField에 입력한 재고 입력값을 반환하는 메소드
+		int stock;
+		TextField inputStock = (TextField)root.lookup("#inputStock");
+		if(Objects.equals(inputStock.getText(),null) || Objects.equals(inputStock.getText(),"")) {
+			stock = 0;
+		}else {
+			stock = Integer.parseInt(inputStock.getText());
+		}
+		return stock;
+	}
+	
+	public String eventDate() {
+		DatePicker eventDate = (DatePicker)root.lookup("#eventDate");
+		String FormatDate;
+		if(Objects.equals(eventDate.getValue(),null)) { // 날짜를 입력하지 않은 경우 에러가 발생하지 않도록 함
+			FormatDate = null;
+		}else {
+			FormatDate = eventDate.getValue().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+		}
+		return FormatDate;
+	}
 }

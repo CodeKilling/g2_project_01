@@ -17,11 +17,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class HomeController implements Initializable{
-	dbService db = new dbService();
-	Parent root = null;
+
+	@FXML TableColumn bookName, price, accountName, memberName, inOut, resultTotal, total, recordDate;
+	//@FXML TableColumn fxaccountName, fxaccountWorkerName, fxaccountContactNumber;
+	@FXML TableColumn fxCellBookName, fxCellBookTotal;
+	
+	
 	inOutService IOSvc;
 	ArrayList<BookDTO> dto;
-	@FXML TableColumn bookNameColumn, stockColumn;
+
+	
+	Parent root = null;
 	
 	public void setRoot(Parent p) {
 		this.root = p;
@@ -47,15 +53,15 @@ public class HomeController implements Initializable{
 	
 	
 	public void setColumn() {
-		bookNameColumn.setCellValueFactory(new PropertyValueFactory("name"));
-		stockColumn.setCellValueFactory(new PropertyValueFactory("total"));
+		fxCellBookName.setCellValueFactory(new PropertyValueFactory("name"));
+		fxCellBookTotal.setCellValueFactory(new PropertyValueFactory("total"));
 	}
 	
 	public void selectTable(MouseEvent event) {
-		Label bookName = (Label)root.lookup("#bookName");
+		Label bookName = (Label)root.lookup("#lbbookName");
 		Label bookPrice = (Label)root.lookup("#bookPrice");
 		Label writerName = (Label)root.lookup("#writerName");
-		TableView<BookDTO> stockTable = (TableView)root.lookup("#stockTable");
+		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
 		//int sel = stockTable.getSelectionModel().getSelectedIndex();
 		BookDTO data = stockTable.getSelectionModel().getSelectedItem();
 		bookName.setText(data.getName());
