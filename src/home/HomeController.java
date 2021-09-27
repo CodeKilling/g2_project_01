@@ -27,7 +27,7 @@ public class HomeController implements Initializable{
 	ArrayList<BookDTO> dto;
 
 	
-	Parent root = null;
+	Parent root;
 	
 	public void setRoot(Parent p) {
 		this.root = p;
