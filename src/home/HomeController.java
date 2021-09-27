@@ -20,6 +20,18 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+
+import account.AccountService;
+import account.AccountServiceImpl;
+import KHS.inOutService;
+import common.BookDTO;
+import common.Common;
+import javafx.fxml.FXML;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -49,7 +61,7 @@ public class HomeController implements Initializable{
 	MemService ms;	
 	StatsService ss = null;
 	AccountService as = null;
-
+	
 	Parent root = null;
 	
 	public void setRoot(Parent p) {
@@ -58,7 +70,7 @@ public class HomeController implements Initializable{
 		ss.setRoot(p, startDate, endDate);
 		as.setRoot(p);
 		ms.setRoot(p);
-		
+	
 		tabpane = (TabPane)root.lookup("#fxTabPane");
 		tabpane.getSelectionModel().selectedItemProperty().addListener(
 			    new ChangeListener<Tab>() {
@@ -93,12 +105,6 @@ public class HomeController implements Initializable{
 			);
 	}
 	
-	public void login() {
-		TextField id = (TextField) root.lookup("#fxId");
-		PasswordField pwd = (PasswordField) root.lookup("#fxPwd");
-		ls.Login(id.getText(), pwd.getText());
-	}
-	
 	@Override	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Common.MyConnection();
@@ -109,6 +115,11 @@ public class HomeController implements Initializable{
 		as = new AccountServiceImpl();
 		ms = new MemServiceImpl();
 	}
+	public void login() {
+		TextField id = (TextField) root.lookup("#fxId");
+		PasswordField pwd = (PasswordField) root.lookup("#fxPwd");
+		ls.Login(id.getText(), pwd.getText());
+	}
 	public void join() {
 		ms.join();
 	}
@@ -118,27 +129,16 @@ public class HomeController implements Initializable{
 	public void cancel_join() {
 		ms.cancel_join();
 	}
-/*		Common.MyConnection();
-		IOSvc = new inOutService();
-		dto = new ArrayList<BookDTO>();
-		ls = new LoginServiceImpl();
-		ss = new StatsServiceImpl();
-		as = new AccountServiceImpl();
-	}*/
-	
 	public void inOut() {
 		IOSvc.iOService();
 	}
-	
 	public void cancel() {
 		IOSvc.cancel();
 	}
-
 	public void setColumn() {
 		fxCellBookName.setCellValueFactory(new PropertyValueFactory("name"));
 		fxCellBookTotal.setCellValueFactory(new PropertyValueFactory("total"));
 	}
-
 	public void selectTable(MouseEvent event) {
 		Label bookName = (Label)root.lookup("#lbbookName");
 		Label bookPrice = (Label)root.lookup("#bookPrice");
@@ -171,7 +171,7 @@ public class HomeController implements Initializable{
 	public void todaySearch() {
 		ss.todaySearch();
 	}
-	
+
 	public void allSearch() {
 		ss.allSearch();
 	}
@@ -179,7 +179,6 @@ public class HomeController implements Initializable{
 	public void OnAccountAdd() {
 		as.Add();
 	}
-
 	public void OnAccountModify() {
 		as.Modify();
 	}
