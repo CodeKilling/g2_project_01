@@ -97,11 +97,11 @@ public class inOutService {
 		}
 		
 		DatePicker eventDate = (DatePicker)root.lookup("#eventDate");
-		String FommatDate;
+		String FormatDate;
 		if(Objects.equals(eventDate.getValue(),null)) { // 날짜를 입력하지 않은 경우 에러가 발생하지 않도록 함
-			FommatDate = null;
+			FormatDate = null;
 		}else {
-			FommatDate = eventDate.getValue().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+			FormatDate = eventDate.getValue().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 		}
 		
 		ComboBox cmbAccount = (ComboBox)root.lookup("#cmbAccount");
@@ -129,7 +129,7 @@ public class inOutService {
 		         cs.setInt(2, Common.sessionID); // 로그인한 멤버 id(시퀀스 값) from MemberDTO ?
 		         cs.setInt(3, AccId); // 거래처의 id 값
 		         cs.setInt(4, stock); // #inputStock
-		         cs.setString(5, FommatDate); // #eventDate
+		         cs.setString(5, FormatDate); // #eventDate
 		         cs.registerOutParameter(6, oracle.jdbc.OracleTypes.CURSOR);
 		         cs.execute();
 		         ResultSet rs = (ResultSet)cs.getObject(6);
