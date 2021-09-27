@@ -3,7 +3,7 @@ package common;
 public class snrDTO {
 	private String bookName; //도서명
 	private String price; //가격
-	private String accountName; //거래처
+	private String accountName; //거래처명
 	private String memberName; //입출고자명
 	private int inOut; //입출고량
 	private int resultTotal; //결과재고

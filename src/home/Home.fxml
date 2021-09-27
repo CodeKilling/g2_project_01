@@ -436,28 +436,29 @@
                                     </VBox>
                                     <VBox prefHeight="100.0" prefWidth="164.0">
                                        <children>
-                                          <Label text="오늘 검색">
+                                          <Label text="도서명 선택">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <Button mnemonicParsing="false" onAction="#todaySearch" prefHeight="37.0" prefWidth="164.0" text="오늘 검색">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Button>
+                                          <ComboBox fx:id="statsComboBook" onMouseClicked="#statsSetCombo" prefHeight="37.0" prefWidth="163.0" />
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="100.0" prefWidth="164.0">
+                                    <VBox prefHeight="84.0" prefWidth="172.0">
                                        <children>
-                                          <Label text="전체 검색">
+                                          <Button mnemonicParsing="false" onAction="#todaySearch" prefHeight="20.0" prefWidth="172.0" text="오늘 검색">
                                              <font>
-                                                <Font size="24.0" />
+                                                <Font size="14.0" />
                                              </font>
-                                          </Label>
-                                          <Button mnemonicParsing="false" onAction="#allSearch" prefHeight="37.0" prefWidth="164.0" text="전체 검색">
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#periodSearch" prefHeight="20.0" prefWidth="172.0" text="기간 검색">
                                              <font>
-                                                <Font size="18.0" />
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#allSearch" prefHeight="20.0" prefWidth="172.0" text="전체 검색">
+                                             <font>
+                                                <Font size="14.0" />
                                              </font>
                                           </Button>
                                        </children>
@@ -468,14 +469,14 @@
                            <center>
                               <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                 <columns>
-                                  <TableColumn fx:id="bookName" prefWidth="75.0" text="도서명" />
-                                  <TableColumn fx:id="price" prefWidth="75.0" text="가격" />
-                                    <TableColumn fx:id="accountName" prefWidth="75.0" text="거래처" />
-                                    <TableColumn fx:id="memberName" prefWidth="75.0" text="입출고자명" />
-                                    <TableColumn fx:id="inOut" prefWidth="75.0" text="입출고량" />
-                                    <TableColumn fx:id="resultTotal" prefWidth="75.0" text="결과재고" />
-                                    <TableColumn fx:id="total" prefWidth="75.0" text="현재재고" />
-                                    <TableColumn fx:id="recordDate" prefWidth="75.0" text="일자" />
+                                  <TableColumn prefWidth="75.0" text="도서명" />
+                                  <TableColumn prefWidth="75.0" text="가격" />
+                                    <TableColumn prefWidth="75.0" text="거래처" />
+                                    <TableColumn prefWidth="75.0" text="입출고자명" />
+                                    <TableColumn prefWidth="75.0" text="입출고량" />
+                                    <TableColumn prefWidth="75.0" text="결과재고" />
+                                    <TableColumn prefWidth="75.0" text="현재재고" />
+                                    <TableColumn prefWidth="75.0" text="일자" />
                                 </columns>
                               </TableView>
                            </center>

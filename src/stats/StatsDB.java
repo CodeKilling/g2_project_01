@@ -1,7 +1,6 @@
 package stats;
 
 import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,13 +10,12 @@ import common.Common;
 import common.snrDTO;
 
 public class StatsDB {
-	Connection con;
 	PreparedStatement ps;
 	ResultSet rs;
 	private String sql = null;
 	public ArrayList<snrDTO> search(String sd, String ed) {
 		ArrayList<snrDTO> list = new ArrayList<snrDTO>();
-		String sql = "begin procedure_stats(?,?,?); end;";
+		sql = "begin procedure_stats(?,?,?); end;";
 	      try {
 	         CallableStatement cs = Common.con.prepareCall(sql);
 	         cs.setString(1, sd); //검색시작일
@@ -40,6 +38,20 @@ public class StatsDB {
 	      } catch (SQLException e) {
 	         e.printStackTrace();
 	      }
-	return list;
+	      return list;
+	}
+	public ArrayList<String> getCombo() {
+		ArrayList<String> combo = new ArrayList<String>();
+		sql = "select distinct name from book";
+		try {
+			ps = Common.con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				combo.add(rs.getString("name"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return combo;
 	}
 }
