@@ -1,4 +1,4 @@
-package account;
+package book;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -6,26 +6,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import common.AccountDTO;
+import common.BookDTO;
 import common.Common;
 
-public class AccountDBServiceImpl implements AccountDBService {
+public class BookDBServiceImpl implements BookDBService{
 
 	String sql = null;
 	PreparedStatement ps = null;
 	CallableStatement cs = null;
 	ResultSet rs = null;
-	int result = -1;
-
-	private ArrayList<AccountDTO> createList(ResultSet rs) {
-		ArrayList<AccountDTO> arr = new ArrayList<AccountDTO>();
-		AccountDTO dto = null;
+	
+	private ArrayList<BookDTO> createList(ResultSet rs) {
+		ArrayList<BookDTO> arr = new ArrayList<BookDTO>();
+		BookDTO dto = null;
 		try {
 			while (rs.next()) {
-				dto = new AccountDTO();
-				dto.setName(rs.getString("거래처명"));
-				dto.setContactNumber(rs.getString("연락처"));
-				dto.setWorkerName(rs.getString("담당자명"));
+				dto = new BookDTO();
+				dto.setName(rs.getString("도서명"));
+				dto.setPrice(rs.getString("가격"));
+				dto.setWriter(rs.getString("작가명"));
+				dto.setTotal(rs.getInt("재고"));
 				dto.setId(rs.getInt("id"));
 				arr.add(dto);
 			}
@@ -34,16 +34,16 @@ public class AccountDBServiceImpl implements AccountDBService {
 		}
 		return arr;
 	}
-
+	
 	@Override
-	public ArrayList<AccountDTO> addAccount(String accountName, String contactNumber, String workerName) {
-		ArrayList<AccountDTO> arr = null;
-		sql = "begin procedure_accountadd(?,?,?,?); end;";
+	public ArrayList<BookDTO> bookAdd(String bookName, String price, String writer) {
+		ArrayList<BookDTO> arr = null;
+		sql = "begin procedure_bookadd(?,?,?,?); end;";
 		try {
 			cs = Common.con.prepareCall(sql);
-			cs.setString(1, accountName);
-			cs.setString(2, contactNumber);
-			cs.setString(3, workerName);
+			cs.setString(1, bookName);
+			cs.setString(2, price);
+			cs.setString(3, writer);
 			cs.registerOutParameter(4, oracle.jdbc.OracleTypes.CURSOR);
 			cs.execute();
 			ResultSet rs = (ResultSet) cs.getObject(4);
@@ -55,9 +55,9 @@ public class AccountDBServiceImpl implements AccountDBService {
 	}
 
 	@Override
-	public ArrayList<AccountDTO> deleteAccount(int selectionID) {
-		ArrayList<AccountDTO> arr = null;
-		sql = "begin procedure_accountdelete(?,?); end;";
+	public ArrayList<BookDTO> bookDelete(int selectionID) {
+		ArrayList<BookDTO> arr = null;
+		sql = "begin procedure_bookdelete(?,?); end;";
 		try {
 			cs = Common.con.prepareCall(sql);
 			cs.setInt(1, selectionID);
@@ -72,16 +72,15 @@ public class AccountDBServiceImpl implements AccountDBService {
 	}
 
 	@Override
-	public ArrayList<AccountDTO> modifyAccount(int selectionID, String accountName, String contactNumber,
-			String workerName) {
-		ArrayList<AccountDTO> arr = null;
-		sql = "begin procedure_accountmodify(?,?,?,?,?); end;";
+	public ArrayList<BookDTO> bookModify(int selectionID, String bookName, String price, String writer) {
+		ArrayList<BookDTO> arr = null;
+		sql = "begin procedure_bookmodify(?,?,?,?,?); end;";
 		try {
 			cs = Common.con.prepareCall(sql);
 			cs.setInt(1, selectionID);
-			cs.setString(2, accountName);
-			cs.setString(3, contactNumber);
-			cs.setString(4, workerName);
+			cs.setString(2, bookName);
+			cs.setString(3, price);
+			cs.setString(4, writer);
 			cs.registerOutParameter(5, oracle.jdbc.OracleTypes.CURSOR);
 			cs.execute();
 			ResultSet rs = (ResultSet) cs.getObject(5);
@@ -93,18 +92,19 @@ public class AccountDBServiceImpl implements AccountDBService {
 	}
 
 	@Override
-	public ArrayList<AccountDTO> viewAccount() {
-		ArrayList<AccountDTO> arr = new ArrayList<AccountDTO>();
-		AccountDTO dto = null;
-		sql = "select * from account order by account.id";
+	public ArrayList<BookDTO> bookView() {
+		ArrayList<BookDTO> arr = new ArrayList<BookDTO>();
+		BookDTO dto = null;
+		sql = "select * from book order by book.id";
 		try {
 			ps = Common.con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				dto = new AccountDTO();
+				dto = new BookDTO();
 				dto.setName(rs.getString("name"));
-				dto.setContactNumber(rs.getString("CONTACTNUMBER"));
-				dto.setWorkerName(rs.getString("WORKERNAME"));
+				dto.setWriter(rs.getString("writer"));
+				dto.setPrice(rs.getString("price"));
+				dto.setTotal(rs.getInt("total"));
 				dto.setId(rs.getInt("id"));
 
 				arr.add(dto);
@@ -114,5 +114,5 @@ public class AccountDBServiceImpl implements AccountDBService {
 		}
 		return arr;
 	}
-
+	
 }

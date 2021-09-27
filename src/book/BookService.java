@@ -1,8 +1,8 @@
-package account;
+package book;
 
 import javafx.scene.Parent;
 
-public interface AccountService {
+public interface BookService {
 	public void setRoot(Parent p);
 	public void setView();
 	public void Add();
