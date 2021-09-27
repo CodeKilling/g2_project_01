@@ -2,7 +2,6 @@ package login;
 
 import common.Common;
 import common.MemberDTO;
-import home.HomeController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
