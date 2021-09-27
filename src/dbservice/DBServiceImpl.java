@@ -3,10 +3,9 @@ package dbservice;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import common.Common;
-import dto.MembershipDTO;
+import common.MemberDTO;
 
 public class DBServiceImpl implements DBService{
 
@@ -36,7 +35,7 @@ public class DBServiceImpl implements DBService{
 	}
 
 	@Override
-	public int insertMember(MembershipDTO dto) {
+	public int insertMember(MemberDTO dto) {
 		System.out.println("DB에 회원가입 합니다.");
 		String sql = "INSERT INTO member(USERID,NAME,PWD,PHONENUMBER) VALUES(?,?,?,?)";
 		
@@ -44,7 +43,7 @@ public class DBServiceImpl implements DBService{
 		
 		try {
 			ps = Common.con.prepareStatement(sql);
-			ps.setString(1, dto.getId());
+			ps.setString(1, dto.getUserId());
 			ps.setString(2, dto.getName());
 			ps.setString(3, dto.getPwd());
 			ps.setString(4, dto.getPhNum());

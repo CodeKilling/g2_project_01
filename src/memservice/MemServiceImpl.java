@@ -1,9 +1,9 @@
 package memservice;
 
 import common.Common;
+import common.MemberDTO;
 import dbservice.DBService;
 import dbservice.DBServiceImpl;
-import dto.MembershipDTO;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -13,7 +13,7 @@ public class MemServiceImpl implements MemService{
 	
 	Parent root;
 	DBService db;
-	MembershipDTO dto = new MembershipDTO();
+	MemberDTO dto = new MemberDTO();
 	
 	public MemServiceImpl() {db = new DBServiceImpl();}
 	
@@ -59,14 +59,14 @@ public class MemServiceImpl implements MemService{
 		System.out.println(pwd.getText());
 		System.out.println(pwd2.getText());
 				
-		dto.setId( id.getText() );
+		dto.setUserId( id.getText() );
 		dto.setName( name.getText() );
 		dto.setPhNum( phNum.getText() );
 		dto.setPwd( pwd.getText() );
 		dto.setPwd2( pwd2.getText() );
 		
 		
-		int result = db.checkInfo(dto.getId());
+		int result = db.checkInfo(dto.getUserId());
 		boolean chkPwd = checkPwd(dto);
 		boolean empty = isEmpty();
 		
@@ -109,7 +109,7 @@ public class MemServiceImpl implements MemService{
 		pwd.clear();
 		pwd2.clear();
 	}
-	public boolean checkPwd(MembershipDTO dto) { //비밀번호 확인
+	public boolean checkPwd(MemberDTO dto) { //비밀번호 확인
 
 		if(dto.getPwd().equals(dto.getPwd2())){
 			return true; 
@@ -125,7 +125,7 @@ public class MemServiceImpl implements MemService{
 		PasswordField pwd = (PasswordField)root.lookup("#memPwd");
 		PasswordField pwd2 = (PasswordField)root.lookup("#memPwd2");
 		
-		if( 	dto.getId().isEmpty() ||
+		if( 	dto.getUserId().isEmpty() ||
 				dto.getName().isEmpty() || 
 				dto.getPwd().isEmpty() ||
 				dto.getPwd2().isEmpty() || 
