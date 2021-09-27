@@ -67,7 +67,7 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="BTNcancel" mnemonicParsing="false" onAction="#cancel" prefHeight="44.0" prefWidth="259.0" text="취소">
+                                    <Button fx:id="BTNcancel" mnemonicParsing="false" onAction="#homecancel" prefHeight="44.0" prefWidth="259.0" text="취소">
                                        <font>
                                           <Font size="24.0" />
                                        </font>

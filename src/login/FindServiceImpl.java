@@ -118,7 +118,7 @@ public class FindServiceImpl implements FindService {
 	}
 
 	@Override
-	public void cancel() { //취소 버튼 눌렀을 때
+	public void homecancel() { //취소 버튼 눌렀을 때
 		Button BTNcancel = (Button)root.lookup("#BTNcancel");
 		Button BTNjoin = (Button)root.lookup("#BTNjoin");
 		Button BTNfind = (Button)root.lookup("#BTNfind");
