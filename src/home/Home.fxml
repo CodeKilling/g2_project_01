@@ -62,7 +62,7 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="회원가입">
+                                    <Button fx:id="join" mnemonicParsing="false" onAction="#join" prefHeight="44.0" prefWidth="168.0" text="회원가입">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -73,47 +73,47 @@
                            <right>
                               <VBox prefHeight="403.0" prefWidth="255.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <TextField promptText="id">
+                                    <TextField fx:id="memId" promptText="id" visible="false">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </TextField>
-                                    <TextField promptText="이름">
+                                    <TextField fx:id="memName" promptText="이름" visible="false">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </TextField>
-                                    <TextField promptText="01012341234">
+                                    <TextField fx:id="memPhNum" promptText="01012341234" visible="false">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </TextField>
-                                    <PasswordField promptText="password">
+                                    <PasswordField fx:id="memPwd" promptText="password" visible="false">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </PasswordField>
-                                    <PasswordField promptText="password confirm">
+                                    <PasswordField fx:id="memPwd2" promptText="password confirm" visible="false">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </PasswordField>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="가입">
+                                    <Button fx:id="membership" mnemonicParsing="false" onAction="#membership" prefHeight="44.0" prefWidth="259.0" text="가입" visible="false">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="찾기">
+                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="찾기" visible="false">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="재설정">
+                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="재설정" visible="false">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="취소">
+                                    <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancel" prefHeight="44.0" prefWidth="259.0" text="취소" visible="false">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
