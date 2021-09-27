@@ -44,11 +44,8 @@ public class HomeController implements Initializable{
 	AccountService as = null;
 
 	Parent root = null;
-	public HomeController() {
-		System.out.println("홈컨트롤러");
-	}
+
 	public void setRoot(Parent p) {
-		System.out.println("setRoot 출력");
 		this.root = p;
 		IOSvc.setRoot(p);
 		ss.setRoot(p, startDate, endDate);

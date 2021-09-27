@@ -33,7 +33,6 @@ public class inOutService {
 	
 	public void setRoot(Parent root) {
 		this.root = root;
-		System.out.println("인아웃 루트 : " + root);
 	}
 	
 	public void getTable() { 
@@ -134,20 +133,17 @@ public class inOutService {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("선택된 거래처 id : " + AccId);
+		//System.out.println("선택된 거래처 id : " + AccId);
 		return AccId;
 	}
 	
 	
 	public String getBookName() {
 		String name;
-		System.out.println("root " + root);
 		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
-		System.out.println("테이블 찾기까진 됨");
 		BookDTO data = stockTable.getSelectionModel().getSelectedItem();
-		System.out.println("테이블에서 데이터를 선택하는 것이 안됨.");
 		name = data.getName().toString();
-		System.out.println("책이름 : " + name);
+		//System.out.println("책이름 : " + name);
 		return name;
 	}
 	
