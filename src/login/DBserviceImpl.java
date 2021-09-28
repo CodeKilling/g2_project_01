@@ -20,8 +20,9 @@ public class DBserviceImpl implements DBservice {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				dto = new MemberDTO();
-				dto.setUserId(rs.getString("ID"));
+				dto.setUserId(rs.getString("USERID"));
 				dto.setPwd(rs.getString("PWD"));
+				dto.setId(rs.getInt("ID"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
