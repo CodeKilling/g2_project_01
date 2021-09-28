@@ -1,4 +1,4 @@
-package KHS;
+package inOut;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -10,18 +10,18 @@ import common.BookDTO;
 import common.Common;
 import javafx.scene.Parent;
 
-public class dbService{
+public class DBServiceImpl implements DBService{
 	String sql;
 	PreparedStatement ps;
 	ResultSet rs;
 	Parent root;
-	inOutService IOSvc;
+	InOutServiceImpl IOSvc;
 	
-	public dbService() {
+	public DBServiceImpl() {
 		//Common.MyConnection();
 	}
 	
-	
+	@Override
 	public ArrayList<BookDTO> getDB(){	// BOOK db에 있는 값 가져오기	
 		sql = "select * from BOOK";
 		ArrayList<BookDTO> list = new ArrayList<BookDTO>();
@@ -44,6 +44,7 @@ public class dbService{
 		return list;
 	}
 	
+	@Override
 	public ArrayList getAccName() { // 가져온 거래처 이름을 list로 저장
 		sql = "select NAME from ACCOUNT";
 		ArrayList list = new ArrayList();
@@ -59,6 +60,7 @@ public class dbService{
 		return list;
 	}
 	
+	@Override
 	public int getAccId(String name) {
 		sql = "select ID from ACCOUNT where name = ?";
 		int id = 0;
@@ -75,6 +77,7 @@ public class dbService{
 		return id;
 	}
 	
+	@Override
 	public int getBookId(String name) {
 		sql = "select ID from BOOK where name = ?";
 		int id = 0;
@@ -92,12 +95,10 @@ public class dbService{
 		return id;
 	}
 	
-
-	// 0927 이하 작성
-	
+	@Override
 	public ArrayList<BookDTO> renewTable() {
 		ArrayList<BookDTO> list = new ArrayList<BookDTO>();
-		IOSvc = new inOutService();
+		IOSvc = new InOutServiceImpl();
 		int bookId = IOSvc.findBookId(); // 현재 테이블뷰에 선택된 책의 id(시퀀스) 값
 		int AccId = IOSvc.findAccId(); // 현재 선택된 거래처의 id(시퀀스) 값
 		

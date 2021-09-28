@@ -1,4 +1,4 @@
-package KHS;
+package inOut;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,27 +16,29 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class inOutService {
+public class InOutServiceImpl implements InOutService{
 	static Parent root;
-	dbService db;
+	DBServiceImpl db;
 	ArrayList<BookDTO> dto;
 
 	
-	public inOutService() {
-		db = new dbService();
+	public InOutServiceImpl() {
+		db = new DBServiceImpl();
 		dto = new ArrayList<BookDTO>();
-		System.out.println("인아웃서비스 출력확인");
 	}
 	
+	@Override
 	public void setRoot(Parent root) {
 		this.root = root;
 	}
 	
+	@Override
 	public void getTable() { 
 		dto = db.getDB(); // book DB의 전체정보를 DTO 에 저장
 		viewStockTable(dto); // 해당 정보를 테이블뷰에 셋팅함
 	}
 	
+	@Override
 	public void viewStockTable(ArrayList<BookDTO> dto) {
 		ObservableList<BookDTO> view = FXCollections.observableArrayList();
 		for(int i = 0; i < dto.size(); i++) {
@@ -46,6 +48,7 @@ public class inOutService {
 		stockTable.setItems(view);
 	}
 	
+	@Override
 	public void cancel() {
 		System.out.println("입력값 초기화");
 		Label bookName = (Label)root.lookup("#lbbookName");
@@ -67,6 +70,7 @@ public class inOutService {
 		
 	}
 	
+	@Override
 	public void setAccCmb() {
 		ArrayList list = new ArrayList();
 		list = db.getAccName();
@@ -85,7 +89,7 @@ public class inOutService {
 			// 3번째 = 선택된 거래처의 id값  >> 거래처 cmb 값을 넣는게 선행되어야 함 (account 테이블에 name 컬럼)
 			// 4번째 = 입출고량 >> #inputStock textfield 값을 가져옴
 			// 5번째 = datepicker에서 선택한 날짜.toString()
-
+	@Override
 	public void IOService() {
 
 		int stock = txtStock(); // JavaFx inputStock 에 입력한 숫자를 가져옴
@@ -97,12 +101,12 @@ public class inOutService {
 		
 		ComboBox cmbAccount = (ComboBox)root.lookup("#cmbAccount");
 		int realStock = findStock(); // 현재 테이블뷰에 선택된 책의 실제 재고량을 저장하는 변수
-		
+	
 		if(realStock + stock < 0) { // 현재 저장된 책 재고보다 많이 출고하려고 할 경우 경고 메세지 출력
 			// 출고의 경우 stock의 값이 음수(-)로 들어옴으로 실제량+입력량의 합으로 계산
 			Common.MyAlert("실제 재고량보다 많은 출고량을 입력했습니다.");
 		}else if(stock == 0 || FormatDate.equals(null)
-				|| Objects.equals(cmbAccount.getValue(),null)){ 
+				|| Objects.equals(cmbAccount.getValue(),null) || Objects.equals(cmbAccount.getValue(),"거래처")){ 
 			// 입출고량, 날짜, 거래처 칸중 하나라도 입력하지 않은 경우
 			Common.MyAlert("입력하지 않은 칸이 있습니다.");
 		}else {
@@ -111,6 +115,7 @@ public class inOutService {
 		}
 	}
 	
+	@Override
 	public String getAccCmb() { // javafx에서 선택된 cmb의 값 가져오기
 		String name;
 		ComboBox cmbAccount = (ComboBox)root.lookup("#cmbAccount");
@@ -121,7 +126,8 @@ public class inOutService {
 		}
 		return name;
 	}
-	
+
+	@Override
 	public int findAccId() {
 		String name = getAccCmb();
 		int AccId = 0;
@@ -134,7 +140,7 @@ public class inOutService {
 		return AccId;
 	}
 	
-	
+	@Override
 	public String getBookName() {
 		String name;
 		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
@@ -144,6 +150,7 @@ public class inOutService {
 		return name;
 	}
 	
+	@Override
 	public int findBookId() {
 		String name = getBookName();
 		int bookId = 0;
@@ -156,6 +163,7 @@ public class inOutService {
 		return bookId;
 	}
 	
+	@Override
 	public int findStock() {	
 		TableView<BookDTO> stockTable = (TableView)root.lookup("#fxTV_snr");
 		int bookStock = 0;
@@ -168,8 +176,8 @@ public class inOutService {
 		return bookStock;
 	}
 	
-	// 0927 이하 작성
 	
+	@Override
 	public int txtStock() { // javaFx textField에 입력한 재고 입력값을 반환하는 메소드
 		int stock;
 		TextField inputStock = (TextField)root.lookup("#inputStock");
@@ -181,6 +189,7 @@ public class inOutService {
 		return stock;
 	}
 
+	@Override
 	public String eventDate() {
 		DatePicker eventDate = (DatePicker)root.lookup("#eventDate");
 		String FormatDate;

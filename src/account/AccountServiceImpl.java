@@ -121,6 +121,7 @@ public class AccountServiceImpl implements AccountService {
 					Common.MyAlert("수정 성공!");
 					this.setList(arr);
 					tv.getSelectionModel().select(selectionID);
+					clear();
 				} else {
 					Common.MyAlert("수정 실패! (ex : .)");
 				}
@@ -150,6 +151,7 @@ public class AccountServiceImpl implements AccountService {
 				if (arr.size() > 0) {
 					Common.MyAlert("삭제 성공!");
 					this.setList(arr);
+					clear();
 				} else {
 					Common.MyAlert("삭제 실패! (ex : .)");
 				}

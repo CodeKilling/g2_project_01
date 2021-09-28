@@ -3,26 +3,23 @@ package home;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import KHS.inOutService;
 import account.AccountService;
 import account.AccountServiceImpl;
 import book.BookService;
 import book.BookServiceImpl;
 import common.BookDTO;
 import common.Common;
+import inOut.InOutServiceImpl;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import login.FindService;
@@ -31,13 +28,12 @@ import login.LoginService;
 import login.LoginServiceImpl;
 import memservice.MemService;
 import memservice.MemServiceImpl;
-import stats.StatsDB;
+import stats.StatsDBService;
+import stats.StatsDBServiceImpl;
 import stats.StatsService;
 import stats.StatsServiceImpl;
 
 public class HomeController implements Initializable{
-	@FXML DatePicker startDate, endDate;
-	@FXML TableColumn bookName, price, accountName, memberName, inOut, resultTotal, total, recordDate;
 	@FXML TableColumn fxaccountName, fxaccountWorkerName, fxaccountContactNumber;
 	//@FXML TableColumn fxaccountName, fxaccountWorkerName, fxaccountContactNumber;
 	@FXML TableColumn fxCellBookName, fxCellBookTotal;
@@ -45,14 +41,13 @@ public class HomeController implements Initializable{
 	TabPane tabpane = null;
 	Parent root = null;
 	StatsService ss = null;
-	StatsDB sdb = null;
-	inOutService IOSvc;
+	StatsDBService sdb = null;
+	InOutServiceImpl IOSvc;
 	LoginService ls;
 	FindService fs;
 	MemService ms;	
 	AccountService as = null;
 	BookService bs = null;
-	
 
 	public void setRoot(Parent p) {
 		this.root = p;
@@ -62,7 +57,8 @@ public class HomeController implements Initializable{
 		as.setRoot(p);
 		bs.setRoot(p);
 		ms.setRoot(p);
-	
+		ls.setRoot(p);
+		
 		tabpane = (TabPane)root.lookup("#fxTabPane");
 		tabpane.getSelectionModel().selectedItemProperty().addListener(
 			    new ChangeListener<Tab>() {
@@ -96,23 +92,32 @@ public class HomeController implements Initializable{
 			        }
 			    }
 			);
+		Tab tabBookProc = tabpane.getTabs().get(1);
+		Tab tabBookInOutProc = tabpane.getTabs().get(2);
+		Tab tabAccountProc = tabpane.getTabs().get(3);
+		Tab tabInoutProc = tabpane.getTabs().get(4);
+		
+		tabBookProc.setDisable(true);
+		tabBookInOutProc.setDisable(true);
+		tabAccountProc.setDisable(true);
+		tabInoutProc.setDisable(true);
+		
+		ls.setTab(tabpane, tabBookProc, tabBookInOutProc, tabAccountProc, tabInoutProc);
 	}
 	@Override	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Common.MyConnection();
-		IOSvc = new inOutService();
+		IOSvc = new InOutServiceImpl();
 		ls = new LoginServiceImpl();
 		fs = new FindServiceImpl();
 		ss = new StatsServiceImpl();
 		as = new AccountServiceImpl();
 		bs = new BookServiceImpl();
 		ms = new MemServiceImpl();
-		sdb = new StatsDB();
+		sdb = new StatsDBServiceImpl();
 	}
 	public void login() {
-		TextField id = (TextField) root.lookup("#fxId");
-		PasswordField pwd = (PasswordField) root.lookup("#fxPwd");
-		ls.Login(id.getText(), pwd.getText());
+		ls.Login();
 	}
 	public void findId() {
 		fs.findId();
@@ -162,9 +167,6 @@ public class HomeController implements Initializable{
 //		fxaccountWorkerName.setCellValueFactory(new PropertyValueFactory("workerName"));
 //		fxaccountContactNumber.setCellValueFactory(new PropertyValueFactory("contactNumber"));
 //	}
-	
-	
-	
 	public void OnAccountAdd() {
 		as.Add();
 	}

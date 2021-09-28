@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import common.Common;
 import common.snrDTO;
 
-public class StatsDB {
+public class StatsDBServiceImpl implements StatsDBService{
 	PreparedStatement ps;
 	ResultSet rs;
 	private String sql = null;

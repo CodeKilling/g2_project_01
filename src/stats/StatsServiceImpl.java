@@ -18,11 +18,11 @@ public class StatsServiceImpl implements StatsService{
 	Parent root;
 	DatePicker startDate, endDate;
 	ComboBox<String> statsComboBook;
-	StatsDB db;
+	StatsDBServiceImpl db;
 	ArrayList<snrDTO> list = null;
 	public void setRoot(Parent root) {
 		this.root = root;
-		db = new StatsDB();
+		db = new StatsDBServiceImpl();
 		startDate = (DatePicker)root.lookup("#startDate");
 		endDate = (DatePicker)root.lookup("#endDate");
 		statsComboBook = (ComboBox<String>)root.lookup("#statsComboBook");
@@ -32,7 +32,9 @@ public class StatsServiceImpl implements StatsService{
 	public void todaySearch() {
 		LocalDate date = LocalDate.now();
 		startDate.setValue(date); endDate.setValue(date);
-		list = db.search(startDate.getValue().toString(), endDate.getValue().toString());
+		String start = startDate.getValue().toString().replace("-", "");
+		String end = endDate.getValue().toString().replace("-", "");
+		list = db.search(start, end);
     	view(list);
 	}
 	//기간 검색

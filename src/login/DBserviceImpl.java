@@ -8,12 +8,10 @@ import common.Common;
 import common.MemberDTO;
 
 public class DBserviceImpl implements DBservice {
-
+	PreparedStatement ps = null;
+	ResultSet rs = null;
 	@Override
 	public MemberDTO LoginCheck(String userId) {
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
 		String sql = "select * from MEMBER where userID = ?";
 		MemberDTO dto = null;
 		try {
@@ -22,8 +20,9 @@ public class DBserviceImpl implements DBservice {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				dto = new MemberDTO();
-				dto.setUserId(rs.getString("ID"));
+				dto.setUserId(rs.getString("USERID"));
 				dto.setPwd(rs.getString("PWD"));
+				dto.setId(rs.getInt("ID"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -33,8 +32,6 @@ public class DBserviceImpl implements DBservice {
 
 	@Override
 	public MemberDTO FindId(String name) {
-		PreparedStatement ps = null;
-		ResultSet rs = null;
 		MemberDTO dto = null;
 		String sql = "select * from MEMBER where NAME = ?";
 		try {
@@ -56,8 +53,6 @@ public class DBserviceImpl implements DBservice {
 
 	@Override
 	public MemberDTO rePwd(String userId, String pwd) {
-		PreparedStatement ps = null;
-		ResultSet rs = null;
 		MemberDTO dto = null;
 		String sql = "update MEMBER SET PWD = ? where USERID = ?";
 		try {
@@ -80,8 +75,6 @@ public class DBserviceImpl implements DBservice {
 
 	@Override
 	public boolean CheckID(String userId) {
-		PreparedStatement ps = null;
-		ResultSet rs = null;
 		
 		System.out.println("userId : " + userId);
 		String sql = "select * from MEMBER where USERID = ?";
