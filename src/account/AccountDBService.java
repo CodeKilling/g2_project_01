@@ -9,4 +9,5 @@ public interface AccountDBService {
 	public ArrayList<AccountDTO> deleteAccount(int selectionID);
 	public ArrayList<AccountDTO> modifyAccount(int selectionID, String accountName, String contactNumber, String workerName);
 	public ArrayList<AccountDTO> viewAccount();
+	public boolean chkName(String _name);
 }

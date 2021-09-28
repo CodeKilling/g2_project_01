@@ -36,6 +36,26 @@ public class AccountDBServiceImpl implements AccountDBService {
 	}
 
 	@Override
+	public boolean chkName(String _name) {
+		sql = "select account.name from account where account.name = ?;";
+		try {
+			ps = Common.con.prepareStatement(sql);
+			ps.setString(1, _name);
+			rs = (ResultSet)ps.executeQuery();
+			if(rs.next()) {
+				if(rs.getString("name").equals(_name)) {
+					return false;
+				}else{
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
 	public ArrayList<AccountDTO> addAccount(String accountName, String contactNumber, String workerName) {
 		ArrayList<AccountDTO> arr = null;
 		sql = "begin procedure_accountadd(?,?,?,?); end;";
@@ -46,7 +66,7 @@ public class AccountDBServiceImpl implements AccountDBService {
 			cs.setString(3, workerName);
 			cs.registerOutParameter(4, oracle.jdbc.OracleTypes.CURSOR);
 			cs.execute();
-			ResultSet rs = (ResultSet) cs.getObject(4);
+			rs = (ResultSet) cs.getObject(4);
 			arr = this.createList(rs);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,7 +83,7 @@ public class AccountDBServiceImpl implements AccountDBService {
 			cs.setInt(1, selectionID);
 			cs.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
 			cs.execute();
-			ResultSet rs = (ResultSet) cs.getObject(2);
+			rs = (ResultSet) cs.getObject(2);
 			arr = this.createList(rs);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -84,7 +104,7 @@ public class AccountDBServiceImpl implements AccountDBService {
 			cs.setString(4, workerName);
 			cs.registerOutParameter(5, oracle.jdbc.OracleTypes.CURSOR);
 			cs.execute();
-			ResultSet rs = (ResultSet) cs.getObject(5);
+			rs = (ResultSet) cs.getObject(5);
 			arr = this.createList(rs);
 		} catch (Exception e) {
 			e.printStackTrace();

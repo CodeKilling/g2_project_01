@@ -9,4 +9,5 @@ public interface BookDBService {
 	public ArrayList<BookDTO> bookDelete(int selectionID);
 	public ArrayList<BookDTO> bookModify(int selectionID, String bookName, String price, String writer);
 	public ArrayList<BookDTO> bookView();
+	public boolean chkName(String _name);
 }

@@ -36,6 +36,26 @@ public class BookDBServiceImpl implements BookDBService{
 	}
 	
 	@Override
+	public boolean chkName(String _name) {
+		sql = "select book.name from book where book.name = ?;";
+		try {
+			ps = Common.con.prepareStatement(sql);
+			ps.setString(1, _name);
+			rs = (ResultSet)ps.executeQuery();
+			if(rs.next()) {
+				if(rs.getString("name").equals(_name)) {
+					return false;
+				}else{
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
 	public ArrayList<BookDTO> bookAdd(String bookName, String price, String writer) {
 		ArrayList<BookDTO> arr = null;
 		sql = "begin procedure_bookadd(?,?,?,?); end;";

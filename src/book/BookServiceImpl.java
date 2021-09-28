@@ -79,13 +79,17 @@ public class BookServiceImpl implements BookService{
 				|| textfield_BookWriter.getText().isEmpty()) {
 			Common.MyAlert("공백이 있습니다.");
 		}else {
-			arr = bdbs.bookAdd(textfield_BookName.getText(), textfield_BookPrice.getText(), textfield_BookWriter.getText());
-			if (arr.size() > 0) {
-				Common.MyAlert("등록 성공!");
-				this.setList(arr);
-				tv.getSelectionModel().select(arr.size()-1);
-			} else {
-				Common.MyAlert("등록 실패! (ex : 도서명이 이미 존재 합니다.)");
+			if(bdbs.chkName(textfield_BookName.getText())) {
+				arr = bdbs.bookAdd(textfield_BookName.getText(), textfield_BookPrice.getText(), textfield_BookWriter.getText());
+				if (arr.size() > 0) {
+					Common.MyAlert("등록 성공!");
+					this.setList(arr);
+					tv.getSelectionModel().select(arr.size()-1);
+				} else {
+					Common.MyAlert("등록 실패! (ex : 도서명이 이미 존재 합니다.)");
+				}
+			}else {
+				Common.MyAlert("도서명이 이미 존재 합니다. : " + textfield_BookName.getText());
 			}
 		}
 	}

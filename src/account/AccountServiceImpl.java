@@ -84,13 +84,17 @@ public class AccountServiceImpl implements AccountService {
 				|| tF_WorkerName.getText().isEmpty()) {
 			Common.MyAlert("공백이 있습니다.");
 		}else {
-			arr = adbs.addAccount(tF_AccountName.getText(), tF_ContactNumber.getText(), tF_WorkerName.getText());
-			if (arr.size() > 0) {
-				Common.MyAlert("등록 성공!");
-				this.setList(arr);
-				tv.getSelectionModel().select(arr.size()-1);
-			} else {
-				Common.MyAlert("등록 실패! (ex : 거래처명이 이미 존재 합니다.)");
+			if(adbs.chkName(tF_AccountName.getText())) {
+				arr = adbs.addAccount(tF_AccountName.getText(), tF_ContactNumber.getText(), tF_WorkerName.getText());
+				if (arr.size() > 0) {
+					Common.MyAlert("등록 성공!");
+					this.setList(arr);
+					tv.getSelectionModel().select(arr.size()-1);
+				} else {
+					Common.MyAlert("등록 실패! (ex : 거래처명이 이미 존재 합니다.)");
+				}
+			}else {
+				Common.MyAlert("거래처명이 이미 존재 합니다. : " + tF_AccountName.getText());
 			}
 		}
 	}
