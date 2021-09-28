@@ -3,13 +3,13 @@ package home;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import KHS.inOutService;
 import account.AccountService;
 import account.AccountServiceImpl;
 import book.BookService;
 import book.BookServiceImpl;
 import common.BookDTO;
 import common.Common;
+import inOut.InOutServiceImpl;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -44,7 +44,7 @@ public class HomeController implements Initializable{
 	Parent root = null;
 	StatsService ss = null;
 	StatsDB sdb = null;
-	inOutService IOSvc;
+	InOutServiceImpl IOSvc;
 	LoginService ls;
 	MemService ms;	
 	AccountService as = null;
@@ -96,7 +96,7 @@ public class HomeController implements Initializable{
 	@Override	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Common.MyConnection();
-		IOSvc = new inOutService();
+		IOSvc = new InOutServiceImpl();
 		ls = new LoginServiceImpl();
 		ss = new StatsServiceImpl();
 		as = new AccountServiceImpl();
