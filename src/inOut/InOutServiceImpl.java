@@ -105,7 +105,7 @@ public class InOutServiceImpl implements InOutService{
 		if(realStock + stock < 0) { // 현재 저장된 책 재고보다 많이 출고하려고 할 경우 경고 메세지 출력
 			// 출고의 경우 stock의 값이 음수(-)로 들어옴으로 실제량+입력량의 합으로 계산
 			Common.MyAlert("실제 재고량보다 많은 출고량을 입력했습니다.");
-		}else if(stock == 0 || FormatDate.equals(null)
+		}else if(stock == 0 || FormatDate == null
 				|| Objects.equals(cmbAccount.getValue(),null) || Objects.equals(cmbAccount.getValue(),"거래처")){ 
 			// 입출고량, 날짜, 거래처 칸중 하나라도 입력하지 않은 경우
 			Common.MyAlert("입력하지 않은 칸이 있습니다.");

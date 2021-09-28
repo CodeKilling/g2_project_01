@@ -53,11 +53,11 @@ public class MemServiceImpl implements MemService{
 		PasswordField pwd = (PasswordField)root.lookup("#memPwd");
 		PasswordField pwd2 = (PasswordField)root.lookup("#memPwd2");
 		
-		System.out.println(id.getText());
-		System.out.println(name.getText());
-		System.out.println(phNum.getText());
-		System.out.println(pwd.getText());
-		System.out.println(pwd2.getText());
+		//System.out.println(id.getText());
+		//System.out.println(name.getText());
+		//System.out.println(phNum.getText());
+		//System.out.println(pwd.getText());
+		//System.out.println(pwd2.getText());
 				
 		dto.setUserId( id.getText() );
 		dto.setName( name.getText() );

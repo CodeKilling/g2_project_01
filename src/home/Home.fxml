@@ -234,7 +234,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="lbbookName" prefHeight="32.0" prefWidth="220.0" text="도서명 Label">
+                                          <Label fx:id="lbbookName" prefHeight="32.0" prefWidth="220.0">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
@@ -248,7 +248,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="bookPrice" prefHeight="32.0" prefWidth="218.0" text="가격 Label">
+                                          <Label fx:id="bookPrice" prefHeight="32.0" prefWidth="218.0">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
@@ -262,7 +262,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="writerName" prefHeight="32.0" prefWidth="219.0" text="작가명 Label">
+                                          <Label fx:id="writerName" prefHeight="32.0" prefWidth="219.0">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
