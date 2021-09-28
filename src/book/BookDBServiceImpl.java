@@ -37,7 +37,7 @@ public class BookDBServiceImpl implements BookDBService{
 	
 	@Override
 	public boolean chkName(String _name) {
-		sql = "select book.name from book where book.name = ?;";
+		sql = "select book.name from book where book.name = ?";
 		try {
 			ps = Common.con.prepareStatement(sql);
 			ps.setString(1, _name);
@@ -48,11 +48,12 @@ public class BookDBServiceImpl implements BookDBService{
 				}else{
 					return true;
 				}
-			}
+			}else
+				return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return false;
+		return true;
 	}
 
 	@Override

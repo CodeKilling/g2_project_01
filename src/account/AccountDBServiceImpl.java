@@ -37,22 +37,24 @@ public class AccountDBServiceImpl implements AccountDBService {
 
 	@Override
 	public boolean chkName(String _name) {
-		sql = "select account.name from account where account.name = ?;";
+		sql = "select account.name from account where account.name = ?";
 		try {
 			ps = Common.con.prepareStatement(sql);
 			ps.setString(1, _name);
 			rs = (ResultSet)ps.executeQuery();
 			if(rs.next()) {
 				if(rs.getString("name").equals(_name)) {
+					System.out.println(rs.getString("name") + " : " + _name);
 					return false;
 				}else{
 					return true;
 				}
-			}
+			}else
+				return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return false;
+		return true;
 	}
 
 	@Override
