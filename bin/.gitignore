@@ -1,6 +1,10 @@
+/KHS/
 /account/
-/home/
-/memservice/
-/stats/
+/book/
 /common/
 /dbservice/
+/home/
+/login/
+/memservice/
+/sql/
+/stats/
