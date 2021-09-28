@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 public class FindServiceImpl implements FindService {
 Parent root;
 DBservice db;
+String msg = null;
 public FindServiceImpl() {
 	db = new DBserviceImpl();
 }
@@ -23,7 +24,7 @@ public FindServiceImpl() {
 
 	@Override
 	public void findId() {
-		System.out.println("아이디찾기 버튼 클릭");
+		//System.out.println("아이디찾기 버튼 클릭");
 		TextField fxId = (TextField)root.lookup("#fxId");
 		TextField fxPwd = (TextField)root.lookup("#fxPwd");
 		TextField memId = (TextField) root.lookup("#memId");
@@ -41,19 +42,14 @@ public FindServiceImpl() {
 		memId.setVisible(false);memName.setVisible(true);
 		memPwd.setVisible(false);memPhNum.setVisible(true);
 		memPwd2.setVisible(false);memPwd2.setVisible(false);
+		membership.setVisible(false);
 		cancel_join.setVisible(true);
 		BTNreset.setVisible(false);
 		BTNfind.setVisible(true);
 	}
-
-	@Override
-	public void cancel_join() {
-		
-	}
-
 	@Override
 	public void rePwd() {
-		System.out.println("비번 재설정");
+		//System.out.println("비번 재설정");
 		TextField RTFname = (TextField)root.lookup("#memName");
 		TextField RTFpn = (TextField)root.lookup("#memPhNum");
 		TextField RTFid = (TextField)root.lookup("#memId");
@@ -72,57 +68,56 @@ public FindServiceImpl() {
 	public void BTNfindClicked() {
 		TextField tfName = (TextField) root.lookup("#memName");
 		TextField tfPhoneNumber = (TextField) root.lookup("#memPhNum");
-		String msg = null;
+		TextField fxId = (TextField)root.lookup("#fxId");
 
 		MemberDTO dto = db.FindId(tfName.getText());
-		if (dto != null) {
-			
-			if (dto.getPhNum().equals(tfPhoneNumber.getText())) {
-				msg = "찾기 성공";
-				
-			}
-			else {
-				msg = "전화번호가 틀렸습니다";
-			}
+		if(tfName.getText().isEmpty()) {
+			msg = "이름을 입력해 주세요.";
+		}else if(tfPhoneNumber.getText().isEmpty()) {
+			msg = "전화번호를 입력해 주세요.";
 		}else {
-			msg = "존재하지 않는 이름 입니다";
+			if (dto != null) {
+				if (dto.getPhNum().equals(tfPhoneNumber.getText())) {
+					msg = "찾기 성공!\n아이디 : "+ dto.getUserId();
+					fxId.setText(dto.getUserId());
+					tfName.clear();
+					tfPhoneNumber.clear();
+				}
+				else {
+					msg = "전화번호가 틀렸습니다.";
+				}
+			}else {
+				msg = "존재하지 않는 이름입니다.";
+			}
 		}
 		Common.MyAlert(msg);
-		if(dto != null) {
-			if(dto.getPhNum().equals(tfPhoneNumber.getText())) {
-		
-		TextField fxId = (TextField)root.lookup("#fxId");
-		
-		
-		fxId.setText(dto.getUserId());
-		tfName.clear();
-		tfPhoneNumber.clear();
-		
-			}
-		}
 	}
 
 	@Override
-	public void BTNreset() {
-		String msg;
+	public void BTNreset() {		
+		TextField RTFid = (TextField)root.lookup("#memId");
 		PasswordField RTFpw =(PasswordField)root.lookup("#memPwd");
 		PasswordField RTFpwc =(PasswordField)root.lookup("#memPwd2");
-		TextField RTFid = (TextField)root.lookup("#memId");
-		
-		if(db.CheckID(RTFid.getText())) {
-			if(RTFpw.getText().equals(RTFpwc.getText())) {
-				db.rePwd(RTFid.getText(), RTFpw.getText());
-				msg = "비밀번호가 재설정 되었습니다";
-						Common.MyAlert(msg);
-			}
-			else {
-				msg = "입력한 비밀번호와 일치하지 않습니다";
-				Common.MyAlert(msg);
-			}	
+		if(RTFid.getText().isEmpty()) {
+			msg = "아이디를 입력해 주세요.";
+		}else if(RTFpw.getText().isEmpty()) {
+			msg = "새로운 비밀번호를 입력해 주세요.";
+		}else if(RTFpwc.getText().isEmpty()) {
+			msg = "비밀번호 확인을 입력해 주세요.";
 		}else {
-			msg = "존재하지 않는 아이디 입니다";
-			Common.MyAlert(msg);
+			if(db.CheckID(RTFid.getText())) {
+				if(RTFpw.getText().equals(RTFpwc.getText())) {
+					db.rePwd(RTFid.getText(), RTFpw.getText());
+					msg = "비밀번호가 재설정 되었습니다";
+				}
+				else {
+					msg = "입력한 비밀번호와 일치하지 않습니다";
+				}	
+			}else {
+				msg = "존재하지 않는 아이디 입니다";
+			}
 		}
+		Common.MyAlert(msg);
 	}
 
 }

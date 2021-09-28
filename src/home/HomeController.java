@@ -43,19 +43,13 @@ public class HomeController implements Initializable{
 	TabPane tabpane = null;
 	Parent root = null;
 	StatsService ss = null;
-
-	//StatsDB sdb = null;
-	InOutServiceImpl IOSvc;
-
 	StatsDBService sdb = null;
-
-
+	InOutServiceImpl IOSvc;
 	LoginService ls;
 	FindService fs;
 	MemService ms;	
 	AccountService as = null;
 	BookService bs = null;
-	
 
 	public void setRoot(Parent p) {
 		this.root = p;
@@ -65,7 +59,8 @@ public class HomeController implements Initializable{
 		as.setRoot(p);
 		bs.setRoot(p);
 		ms.setRoot(p);
-	
+		ls.setRoot(p);
+		
 		tabpane = (TabPane)root.lookup("#fxTabPane");
 		tabpane.getSelectionModel().selectedItemProperty().addListener(
 			    new ChangeListener<Tab>() {
@@ -124,9 +119,7 @@ public class HomeController implements Initializable{
 		sdb = new StatsDBServiceImpl();
 	}
 	public void login() {
-		TextField id = (TextField) root.lookup("#fxId");
-		PasswordField pwd = (PasswordField) root.lookup("#fxPwd");
-		ls.Login(id.getText(), pwd.getText());
+		ls.Login();
 	}
 	public void findId() {
 		fs.findId();
@@ -176,9 +169,6 @@ public class HomeController implements Initializable{
 //		fxaccountWorkerName.setCellValueFactory(new PropertyValueFactory("workerName"));
 //		fxaccountContactNumber.setCellValueFactory(new PropertyValueFactory("contactNumber"));
 //	}
-	
-	
-	
 	public void OnAccountAdd() {
 		as.Add();
 	}
