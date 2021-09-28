@@ -15,7 +15,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
@@ -25,17 +24,18 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import login.FindService;
+import login.FindServiceImpl;
 import login.LoginService;
 import login.LoginServiceImpl;
 import memservice.MemService;
 import memservice.MemServiceImpl;
-import stats.StatsDB;
+import stats.StatsDBService;
+import stats.StatsDBServiceImpl;
 import stats.StatsService;
 import stats.StatsServiceImpl;
 
 public class HomeController implements Initializable{
-	@FXML DatePicker startDate, endDate;
-	@FXML TableColumn bookName, price, accountName, memberName, inOut, resultTotal, total, recordDate;
 	@FXML TableColumn fxaccountName, fxaccountWorkerName, fxaccountContactNumber;
 	//@FXML TableColumn fxaccountName, fxaccountWorkerName, fxaccountContactNumber;
 	@FXML TableColumn fxCellBookName, fxCellBookTotal;
@@ -43,9 +43,15 @@ public class HomeController implements Initializable{
 	TabPane tabpane = null;
 	Parent root = null;
 	StatsService ss = null;
-	StatsDB sdb = null;
+
+	//StatsDB sdb = null;
 	InOutServiceImpl IOSvc;
+
+	StatsDBService sdb = null;
+
+
 	LoginService ls;
+	FindService fs;
 	MemService ms;	
 	AccountService as = null;
 	BookService bs = null;
@@ -54,6 +60,7 @@ public class HomeController implements Initializable{
 	public void setRoot(Parent p) {
 		this.root = p;
 		IOSvc.setRoot(p);
+		fs.setRoot(p);
 		ss.setRoot(p);
 		as.setRoot(p);
 		bs.setRoot(p);
@@ -92,22 +99,46 @@ public class HomeController implements Initializable{
 			        }
 			    }
 			);
+		Tab tabBookProc = tabpane.getTabs().get(1);
+		Tab tabBookInOutProc = tabpane.getTabs().get(2);
+		Tab tabAccountProc = tabpane.getTabs().get(3);
+		Tab tabInoutProc = tabpane.getTabs().get(4);
+		
+		tabBookProc.setDisable(true);
+		tabBookInOutProc.setDisable(true);
+		tabAccountProc.setDisable(true);
+		tabInoutProc.setDisable(true);
+		
+		ls.setTab(tabpane, tabBookProc, tabBookInOutProc, tabAccountProc, tabInoutProc);
 	}
 	@Override	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Common.MyConnection();
 		IOSvc = new InOutServiceImpl();
 		ls = new LoginServiceImpl();
+		fs = new FindServiceImpl();
 		ss = new StatsServiceImpl();
 		as = new AccountServiceImpl();
 		bs = new BookServiceImpl();
 		ms = new MemServiceImpl();
-		sdb = new StatsDB();
+		sdb = new StatsDBServiceImpl();
 	}
 	public void login() {
 		TextField id = (TextField) root.lookup("#fxId");
 		PasswordField pwd = (PasswordField) root.lookup("#fxPwd");
 		ls.Login(id.getText(), pwd.getText());
+	}
+	public void findId() {
+		fs.findId();
+	}
+	public void rePwd() {
+		fs.rePwd();
+	}
+	public void BTNfindClicked() {
+		fs.BTNfindClicked();
+	}
+	public void BTNresetClick() {
+		fs.BTNreset();
 	}
 	public void join() {
 		ms.join();

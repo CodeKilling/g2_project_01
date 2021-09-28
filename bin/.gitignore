@@ -1,6 +1,25 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+/KHS/
+>>>>>>> db423e322c67975f529d4c466c7d3ef42bfbcd6e
 /account/
-/home/
-/memservice/
-/stats/
+/book/
 /common/
 /dbservice/
+/home/
+/login/
+/memservice/
+/sql/
+/stats/
+<<<<<<< HEAD
+/common/
+/dbservice/
+=======
+/common/
+/home/
+/sql/
+/stats/
+>>>>>>> jieun
+=======
+>>>>>>> db423e322c67975f529d4c466c7d3ef42bfbcd6e
