@@ -25,6 +25,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import login.FindService;
+import login.FindServiceImpl;
 import login.LoginService;
 import login.LoginServiceImpl;
 import memservice.MemService;
@@ -45,6 +47,7 @@ public class HomeController implements Initializable{
 	StatsDBService sdb = null;
 	inOutService IOSvc;
 	LoginService ls;
+	FindService fs;
 	MemService ms;	
 	AccountService as = null;
 	BookService bs = null;
@@ -53,6 +56,7 @@ public class HomeController implements Initializable{
 	public void setRoot(Parent p) {
 		this.root = p;
 		IOSvc.setRoot(p);
+		fs.setRoot(p);
 		ss.setRoot(p);
 		as.setRoot(p);
 		bs.setRoot(p);
@@ -97,6 +101,7 @@ public class HomeController implements Initializable{
 		Common.MyConnection();
 		IOSvc = new inOutService();
 		ls = new LoginServiceImpl();
+		fs = new FindServiceImpl();
 		ss = new StatsServiceImpl();
 		as = new AccountServiceImpl();
 		bs = new BookServiceImpl();
@@ -107,6 +112,18 @@ public class HomeController implements Initializable{
 		TextField id = (TextField) root.lookup("#fxId");
 		PasswordField pwd = (PasswordField) root.lookup("#fxPwd");
 		ls.Login(id.getText(), pwd.getText());
+	}
+	public void findId() {
+		fs.findId();
+	}
+	public void rePwd() {
+		fs.rePwd();
+	}
+	public void BTNfindClicked() {
+		fs.BTNfindClicked();
+	}
+	public void BTNresetClick() {
+		fs.BTNreset();
 	}
 	public void join() {
 		ms.join();

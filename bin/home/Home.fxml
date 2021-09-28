@@ -51,12 +51,12 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="아이디찾기">
+                                    <Button fx:id="findId" mnemonicParsing="false" onAction="#findId" prefHeight="44.0" prefWidth="168.0" text="아이디찾기">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="168.0" text="비번재설정">
+                                    <Button mnemonicParsing="false" onAction="#rePwd" prefHeight="44.0" prefWidth="168.0" text="비번재설정">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -102,12 +102,12 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="찾기" visible="false">
+                                    <Button fx:id="BTNfind" mnemonicParsing="false" onAction="#BTNfindClicked" prefHeight="44.0" prefWidth="259.0" text="찾기" visible="false">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="259.0" text="재설정" visible="false">
+                                    <Button fx:id="BTNreset" mnemonicParsing="false" onAction="#BTNresetClick" prefHeight="44.0" prefWidth="259.0" text="재설정" visible="false">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
