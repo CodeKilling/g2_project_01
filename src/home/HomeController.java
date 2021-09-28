@@ -95,6 +95,17 @@ public class HomeController implements Initializable{
 			        }
 			    }
 			);
+		Tab tabBookProc = tabpane.getTabs().get(1);
+		Tab tabBookInOutProc = tabpane.getTabs().get(2);
+		Tab tabAccountProc = tabpane.getTabs().get(3);
+		Tab tabInoutProc = tabpane.getTabs().get(4);
+		
+		tabBookProc.setDisable(true);
+		tabBookInOutProc.setDisable(true);
+		tabAccountProc.setDisable(true);
+		tabInoutProc.setDisable(true);
+		
+		ls.setTab(tabpane, tabBookProc, tabBookInOutProc, tabAccountProc, tabInoutProc);
 	}
 	@Override	
 	public void initialize(URL arg0, ResourceBundle arg1) {
