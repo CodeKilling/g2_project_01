@@ -18,11 +18,11 @@ public class StatsServiceImpl implements StatsService{
 	Parent root;
 	DatePicker startDate, endDate;
 	ComboBox<String> statsComboBook;
-	StatsDB db;
+	StatsDBServiceImpl db;
 	ArrayList<snrDTO> list = null;
 	public void setRoot(Parent root) {
 		this.root = root;
-		db = new StatsDB();
+		db = new StatsDBServiceImpl();
 		startDate = (DatePicker)root.lookup("#startDate");
 		endDate = (DatePicker)root.lookup("#endDate");
 		statsComboBook = (ComboBox<String>)root.lookup("#statsComboBook");

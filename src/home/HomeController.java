@@ -29,13 +29,12 @@ import login.LoginService;
 import login.LoginServiceImpl;
 import memservice.MemService;
 import memservice.MemServiceImpl;
-import stats.StatsDB;
+import stats.StatsDBService;
+import stats.StatsDBServiceImpl;
 import stats.StatsService;
 import stats.StatsServiceImpl;
 
 public class HomeController implements Initializable{
-	@FXML DatePicker startDate, endDate;
-	@FXML TableColumn bookName, price, accountName, memberName, inOut, resultTotal, total, recordDate;
 	@FXML TableColumn fxaccountName, fxaccountWorkerName, fxaccountContactNumber;
 	//@FXML TableColumn fxaccountName, fxaccountWorkerName, fxaccountContactNumber;
 	@FXML TableColumn fxCellBookName, fxCellBookTotal;
@@ -43,7 +42,7 @@ public class HomeController implements Initializable{
 	TabPane tabpane = null;
 	Parent root = null;
 	StatsService ss = null;
-	StatsDB sdb = null;
+	StatsDBService sdb = null;
 	inOutService IOSvc;
 	LoginService ls;
 	MemService ms;	
@@ -102,7 +101,7 @@ public class HomeController implements Initializable{
 		as = new AccountServiceImpl();
 		bs = new BookServiceImpl();
 		ms = new MemServiceImpl();
-		sdb = new StatsDB();
+		sdb = new StatsDBServiceImpl();
 	}
 	public void login() {
 		TextField id = (TextField) root.lookup("#fxId");

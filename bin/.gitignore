@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 /account/
 /home/
 /memservice/
 /stats/
 /common/
 /dbservice/
+=======
+/common/
+/home/
+/sql/
+/stats/
+>>>>>>> jieun
