@@ -6,14 +6,15 @@ import java.util.ResourceBundle;
 import common.Common;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import stats.StatsDB;
+import stats.StatsDBService;
+import stats.StatsDBServiceImpl;
 import stats.StatsService;
 import stats.StatsServiceImpl;
 
 public class HomeController implements Initializable{
 	Parent root = null;
 	StatsService ss = null;
-	StatsDB sdb = null;
+	StatsDBService sdb = null;
 	public void setRoot(Parent p) {
 		this.root = p;
 		ss.setRoot(p);
@@ -23,7 +24,7 @@ public class HomeController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Common.MyConnection();
 		ss = new StatsServiceImpl();
-		sdb = new StatsDB();
+		sdb = new StatsDBServiceImpl();
 	}
 	public void todaySearch() {
 		ss.todaySearch();
