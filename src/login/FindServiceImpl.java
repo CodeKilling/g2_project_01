@@ -71,10 +71,8 @@ public FindServiceImpl() {
 		TextField fxId = (TextField)root.lookup("#fxId");
 
 		MemberDTO dto = db.FindId(tfName.getText());
-		if(tfName.getText().isEmpty()) {
-			msg = "이름을 입력해 주세요.";
-		}else if(tfPhoneNumber.getText().isEmpty()) {
-			msg = "전화번호를 입력해 주세요.";
+		if(tfName.getText().isEmpty() || tfPhoneNumber.getText().isEmpty()) {
+			msg = "입력하지 않은 항목을 확인하십시오.";
 		}else {
 			if (dto != null) {
 				if (dto.getPhNum().equals(tfPhoneNumber.getText())) {
@@ -98,12 +96,8 @@ public FindServiceImpl() {
 		TextField RTFid = (TextField)root.lookup("#memId");
 		PasswordField RTFpw =(PasswordField)root.lookup("#memPwd");
 		PasswordField RTFpwc =(PasswordField)root.lookup("#memPwd2");
-		if(RTFid.getText().isEmpty()) {
-			msg = "아이디를 입력해 주세요.";
-		}else if(RTFpw.getText().isEmpty()) {
-			msg = "새로운 비밀번호를 입력해 주세요.";
-		}else if(RTFpwc.getText().isEmpty()) {
-			msg = "비밀번호 확인을 입력해 주세요.";
+		if(RTFid.getText().isEmpty() || RTFpw.getText().isEmpty() || RTFpwc.getText().isEmpty()) {
+			msg = "입력하지 않은 항목을 확인하십시오.";
 		}else {
 			if(db.CheckID(RTFid.getText())) {
 				if(RTFpw.getText().equals(RTFpwc.getText())) {

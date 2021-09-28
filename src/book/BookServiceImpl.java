@@ -84,6 +84,7 @@ public class BookServiceImpl implements BookService{
 				Common.MyAlert("등록 성공!");
 				this.setList(arr);
 				tv.getSelectionModel().select(arr.size()-1);
+				clear();
 			} else {
 				Common.MyAlert("등록 실패! (ex : 도서명이 이미 존재 합니다.)");
 			}
@@ -112,6 +113,7 @@ public class BookServiceImpl implements BookService{
 					Common.MyAlert("수정 성공!");
 					this.setList(arr);
 					tv.getSelectionModel().select(selectionID);
+					clear();
 				} else {
 					Common.MyAlert("수정 실패! (ex : .)");
 				}
@@ -141,6 +143,7 @@ public class BookServiceImpl implements BookService{
 				if (arr.size() > 0) {
 					Common.MyAlert("삭제 성공!");
 					this.setList(arr);
+					clear();
 				} else {
 					Common.MyAlert("삭제 실패! (ex : .)");
 				}
