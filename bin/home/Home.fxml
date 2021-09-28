@@ -192,9 +192,9 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Button>
-                                          <Button mnemonicParsing="false" onAction="#OnBookNew" prefHeight="44.0" prefWidth="168.0" text="취소">
+                                          <Button mnemonicParsing="false" onAction="#OnBookNew" prefHeight="44.0" prefWidth="168.0" text="NEW">
                                              <font>
-                                                <Font size="24.0" />
+                                                <Font size="20.0" />
                                              </font>
                                           </Button>
                                        </children>
