@@ -106,10 +106,7 @@ public class DBServiceImpl implements DBService{
 		 try {
 	         CallableStatement cs = Common.con.prepareCall(sql);
 	         cs.setInt(1, bookId);
-	         if(Common.sessionID < 0) {
-	        	 Common.MyAlert("로그인 하고 테스트 하세요.");
-	        	 // 이 조건문 차후 필요없어짐. 차후 삭제 할것.
-	         }
+	         
 	         cs.setInt(2, Common.sessionID); // 로그인한 멤버 id(시퀀스 값) from MemberDTO ?
 	         cs.setInt(3, AccId); // 거래처의 id 값
 	         cs.setInt(4, IOSvc.txtStock()); // #inputStock
@@ -118,9 +115,6 @@ public class DBServiceImpl implements DBService{
 	         cs.execute();
 	         ResultSet rs = (ResultSet)cs.getObject(6);
 	         while(rs.next()) {
-//	            System.out.println(rs.getString("name"));
-//	            System.out.println(rs.getInt("total"));
-	            
 	            BookDTO dto = new BookDTO();
 	            dto.setName(rs.getString("NAME"));
 				dto.setPrice(rs.getString("PRICE"));
