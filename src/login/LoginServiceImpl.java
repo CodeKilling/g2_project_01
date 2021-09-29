@@ -12,20 +12,24 @@ public class LoginServiceImpl implements LoginService {
 	DBservice db;
 	Parent root = null;
 	TabPane tabpane = null;
-	Tab tabHomeProc, tabBookProc, tabBookInOutProc, tabAccountProc, tabInoutProc;
+	Tab tabHomeProc, tabBookProc, tabBookInOutProc, tabAccountProc, tabInoutProc, tabLogoutProc;
 	public LoginServiceImpl() {
 		db = new DBserviceImpl();
 	}
 	public void setRoot(Parent root) {
 		this.root = root;
 	}
-	public void setTab(TabPane tp, Tab book, Tab bookInOut, Tab account, Tab inOut) {
+	
+	@Override
+	public void setTab(TabPane tp, Tab book, Tab bookInOut, Tab account, Tab inOut, Tab logOut) {
 		tabpane = tp;
 		tabBookProc = book;
 		tabBookInOutProc = bookInOut;
 		tabAccountProc = account;
 		tabInoutProc = inOut;
+		tabLogoutProc = logOut;
 	}
+	
 	@Override
 	public void Login() {
 		TextField id = (TextField) root.lookup("#fxId");
@@ -43,6 +47,8 @@ public class LoginServiceImpl implements LoginService {
 				if (dto.getPwd().equals(pwd.getText())) {//dto pwd랑 입력 pwd 같을 경우
 					msg = "로그인 성공";
 					Common.sessionID = dto.getId();
+					id.clear();
+					pwd.clear();
 					setAbleTab();
 				}
 				else {//dto pwd랑 입력 pwd 다를 경우
@@ -54,7 +60,8 @@ public class LoginServiceImpl implements LoginService {
 		}
 		Common.MyAlert(msg);
 	}
-	public void setAbleTab() {
+	
+	private void setAbleTab() {
 		tabHomeProc = tabpane.getTabs().get(0);
 		tabHomeProc.setDisable(true);
 		
@@ -62,6 +69,27 @@ public class LoginServiceImpl implements LoginService {
 		tabBookInOutProc.setDisable(false);
 		tabAccountProc.setDisable(false);
 		tabInoutProc.setDisable(false);
+		tabLogoutProc.setDisable(false);
 		tabpane.getSelectionModel().select(1);
+	}
+	
+	@Override
+	public void setDisableTab() {
+		String msg = "정말 로그아웃 하시겠습니까?";
+		boolean bool = Common.OkCancleAlert(msg);
+		if(bool) {
+			System.out.println("Logout OK Clicked.");
+			tabHomeProc = tabpane.getTabs().get(0);
+			tabHomeProc.setDisable(false);
+			
+			tabBookProc.setDisable(true);
+			tabBookInOutProc.setDisable(true);
+			tabAccountProc.setDisable(true);
+			tabInoutProc.setDisable(true);
+			tabLogoutProc.setDisable(true);
+			tabpane.getSelectionModel().select(0);
+			Common.sessionID = -1;
+		}else
+			System.out.println("Logout CANCLE Clicked.");
 	}
 }

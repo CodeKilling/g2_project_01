@@ -88,6 +88,9 @@ public class HomeController implements Initializable{
 			            case "입출고현황":
 			            	System.out.println("Tab Selection changed : " + t1.getText());
 			            	break;
+			            case "로그아웃":
+			            	System.out.println("Tab Selection changed : " + t1.getText());
+			            	break;
 			            }
 			        }
 			    }
@@ -96,13 +99,15 @@ public class HomeController implements Initializable{
 		Tab tabBookInOutProc = tabpane.getTabs().get(2);
 		Tab tabAccountProc = tabpane.getTabs().get(3);
 		Tab tabInoutProc = tabpane.getTabs().get(4);
+		Tab tabLogoutProc = tabpane.getTabs().get(5);
 		
 		tabBookProc.setDisable(true);
 		tabBookInOutProc.setDisable(true);
 		tabAccountProc.setDisable(true);
 		tabInoutProc.setDisable(true);
+		tabLogoutProc.setDisable(true);
 		
-		ls.setTab(tabpane, tabBookProc, tabBookInOutProc, tabAccountProc, tabInoutProc);
+		ls.setTab(tabpane, tabBookProc, tabBookInOutProc, tabAccountProc, tabInoutProc, tabLogoutProc);
 	}
 	@Override	
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -205,5 +210,10 @@ public class HomeController implements Initializable{
 	}
 	public void statsSetCombo() {
 		ss.updateCombo(sdb.getCombo());
+	}
+	
+	public void OnLogOut() {
+		System.out.println("Logout..");
+		ls.setDisableTab();
 	}
 }
