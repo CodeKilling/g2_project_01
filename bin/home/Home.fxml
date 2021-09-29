@@ -19,13 +19,13 @@
 
 <AnchorPane prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.HomeController">
    <children>
-      <TabPane fx:id="fxTabPane" layoutX="14.0" layoutY="14.0" prefHeight="450.0" prefWidth="690.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="fxTabPane" layoutX="14.0" layoutY="14.0" prefHeight="450.0" prefWidth="690.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
         <tabs>
           <Tab text="HOME">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="403.0" prefWidth="665.0" AnchorPane.leftAnchor="14.0">
+                        <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="403.0" prefWidth="665.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                            <center>
                               <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="149.0" prefWidth="264.0" text="2조. 도서관리." textAlignment="CENTER" BorderPane.alignment="CENTER">
                                  <font>
@@ -70,7 +70,7 @@
                               </VBox>
                            </left>
                            <right>
-                              <VBox prefHeight="403.0" prefWidth="255.0" BorderPane.alignment="CENTER">
+                              <VBox prefHeight="403.0" prefWidth="255.0">
                                  <children>
                                     <TextField fx:id="memId" promptText="id" visible="false">
                                        <font>
@@ -118,6 +118,9 @@
                                        </font>
                                     </Button>
                                  </children>
+                                 <BorderPane.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </BorderPane.margin>
                               </VBox>
                            </right>
                         </BorderPane>
@@ -129,9 +132,9 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="698.0">
                      <children>
-                        <BorderPane prefHeight="403.0" prefWidth="665.0">
+                        <BorderPane prefHeight="403.0" prefWidth="665.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                            <right>
-                              <VBox prefHeight="403.0" prefWidth="320.0" BorderPane.alignment="CENTER">
+                              <VBox prefHeight="403.0" prefWidth="320.0">
                                  <children>
                                     <HBox prefHeight="32.0" prefWidth="322.0">
                                        <children>
@@ -205,15 +208,21 @@
                                  </children>
                               </VBox>
                            </right>
-                           <left>
-                              <TableView fx:id="fxtableviewBook" prefHeight="403.0" prefWidth="331.0" BorderPane.alignment="CENTER">
+                           <center>
+                              <TableView fx:id="fxtableviewBook" prefHeight="403.0" prefWidth="331.0">
                                 <columns>
                                   <TableColumn fx:id="tableColumnBookName" prefWidth="75.0" text="도서명" />
                                   <TableColumn fx:id="tableColumnBookWriter" prefWidth="75.0" text="작가명" />
                                     <TableColumn fx:id="tableColumnBookPrice" prefWidth="75.0" text="가격" />
                                 </columns>
+                                 <BorderPane.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </BorderPane.margin>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
                               </TableView>
-                           </left>
+                           </center>
                         </BorderPane>
                      </children>
                   </AnchorPane>
@@ -223,9 +232,9 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="698.0">
                      <children>
-                        <BorderPane prefHeight="403.0" prefWidth="665.0">
+                        <BorderPane prefHeight="403.0" prefWidth="665.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                            <right>
-                              <VBox prefHeight="403.0" prefWidth="320.0" BorderPane.alignment="CENTER">
+                              <VBox prefHeight="403.0" prefWidth="320.0">
                                  <children>
                                     <HBox prefHeight="32.0" prefWidth="322.0">
                                        <children>
@@ -305,14 +314,20 @@
                                  </children>
                               </VBox>
                            </right>
-                           <left>
-                              <TableView fx:id="fxTV_snr" onMouseClicked="#selectTable" prefHeight="403.0" prefWidth="328.0" BorderPane.alignment="CENTER">
+                           <center>
+                              <TableView fx:id="fxTV_snr" onMouseClicked="#selectTable" prefHeight="403.0" prefWidth="328.0">
                                 <columns>
                                   <TableColumn fx:id="fxCellBookName" prefWidth="75.0" text="도서명" />
                                   <TableColumn fx:id="fxCellBookTotal" prefWidth="75.0" text="재고" />
                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                                 <BorderPane.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </BorderPane.margin>
                               </TableView>
-                           </left>
+                           </center>
                         </BorderPane>
                      </children>
                   </AnchorPane>
@@ -322,9 +337,9 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="698.0">
                      <children>
-                        <BorderPane prefHeight="403.0" prefWidth="665.0">
+                        <BorderPane prefHeight="403.0" prefWidth="665.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                            <right>
-                              <VBox prefHeight="403.0" prefWidth="320.0" BorderPane.alignment="CENTER">
+                              <VBox prefHeight="403.0" prefWidth="320.0">
                                  <children>
                                     <HBox prefHeight="32.0" prefWidth="322.0">
                                        <children>
@@ -398,15 +413,21 @@
                                  </children>
                               </VBox>
                            </right>
-                           <left>
+                           <center>
                               <TableView fx:id="fxTableView_Account" prefHeight="403.0" prefWidth="331.0" BorderPane.alignment="CENTER">
                                  <columns>
                                     <TableColumn fx:id="fxaccountName" prefWidth="75.0" text="거래처명" />
                                     <TableColumn fx:id="fxaccountWorkerName" prefWidth="75.0" text="담당자명" />
                                     <TableColumn fx:id="fxaccountContactNumber" prefWidth="75.0" text="연락처" />
                                  </columns>
+                                 <BorderPane.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </BorderPane.margin>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
                               </TableView>
-                           </left>
+                           </center>
                         </BorderPane>
                      </children>
                   </AnchorPane>
@@ -416,9 +437,9 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="398.0" prefWidth="664.0">
+                        <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="398.0" prefWidth="664.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                            <top>
-                              <HBox prefHeight="69.0" prefWidth="664.0" BorderPane.alignment="CENTER">
+                              <HBox prefHeight="69.0" prefWidth="664.0">
                                  <children>
                                     <VBox prefHeight="100.0" prefWidth="164.0">
                                        <children>
@@ -473,7 +494,7 @@
                               </HBox>
                            </top>
                            <center>
-                              <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                              <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0">
                                 <columns>
                                   <TableColumn prefWidth="75.0" text="도서명" />
                                   <TableColumn prefWidth="75.0" text="가격" />
@@ -484,6 +505,12 @@
                                     <TableColumn prefWidth="75.0" text="현재재고" />
                                     <TableColumn prefWidth="75.0" text="일자" />
                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                                 <BorderPane.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </BorderPane.margin>
                               </TableView>
                            </center>
                         </BorderPane>
