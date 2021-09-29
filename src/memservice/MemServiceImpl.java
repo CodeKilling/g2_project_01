@@ -32,9 +32,13 @@ public class MemServiceImpl implements MemService{
 		
 		Button membership = (Button)root.lookup("#membership");
 		Button cancel_join = (Button)root.lookup("#cancel_join");
+		Button BTNreset = (Button) root.lookup("#BTNreset");
+		Button BTNfind = (Button)root.lookup("#BTNfind");
 		
 		membership.setVisible(true);
 		cancel_join.setVisible(true);	
+		BTNreset.setVisible(false);	
+		BTNfind.setVisible(false);	
 	
 		id.setVisible(true);
 		name.setVisible(true);
