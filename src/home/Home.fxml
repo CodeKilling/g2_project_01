@@ -501,7 +501,7 @@
                                     <TableColumn prefWidth="75.0" text="거래처" />
                                     <TableColumn prefWidth="75.0" text="입출고자명" />
                                     <TableColumn prefWidth="75.0" text="입출고량" />
-                                    <TableColumn prefWidth="75.0" text="결과재고" />
+                                    <TableColumn prefWidth="75.0" text="이전재고" />
                                     <TableColumn prefWidth="75.0" text="현재재고" />
                                     <TableColumn prefWidth="75.0" text="일자" />
                                 </columns>
